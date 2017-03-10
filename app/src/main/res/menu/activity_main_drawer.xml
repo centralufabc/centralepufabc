@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_fretado"
+            android:icon="@drawable/onibus"
+            android:title="Fretado" />
+        <item
+            android:id="@+id/nav_grade"
+            android:icon="@drawable/grade"
+            android:title="Horário das aulas" />
+
+        <item
+            android:id="@+id/nav_cronograma"
+            android:icon="@drawable/cronograma"
+            android:title="Plano de estudos" />
+
+        <item
+            android:id="@+id/nav_monitoria"
+            android:icon="@drawable/monitoria"
+            android:title="Monitoria" />
+
+        <item
+            android:id="@+id/nav_calendario"
+            android:icon="@drawable/calendario"
+            android:title="Calendário" />
+
+        <item
+            android:id="@+id/nav_ru"
+            android:icon="@drawable/food"
+            android:title="Onde comer?" />
+
+        <item
+            android:id="@+id/nav_contador"
+            android:icon="@drawable/clock"
+            android:title="Falta quanto pro ENEM?" />
+
+        <item
+            android:id="@+id/nav_quality"
+            android:icon="@drawable/quality"
+            android:title="Ex-alunos" />
+
+        <item
+            android:id="@+id/nav_equipe"
+            android:icon="@drawable/equipe"
+            android:title="A equipe da EP" />
+
+        <item
+            android:id="@+id/nav_calculadora"
+            android:icon="@drawable/calculator"
+            android:title="Quanto deu de média?" />
+    </group>
+
+    <item android:title="Fale conosco">
+        <menu>
+            <item
+                android:id="@+id/nav_bugs"
+                android:icon="@drawable/bugs_ideias"
+                android:title="Bugs e ideias" />
+            <item
+                android:id="@+id/nav_sobre"
+                android:icon="@drawable/mensagem"
+                android:title="Sobre"
+                />
+            <item
+                android:id="@+id/nav_hi"
+                android:icon="@drawable/handshake"
+                android:title="Tela de boas-vindas" />
+        </menu>
+    </item>
+
+</menu>

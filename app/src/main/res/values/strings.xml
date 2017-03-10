@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Central EPUFABC</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_fretado">fretado</string>
+    <string name="title_activity_aulas">aulas</string>
+    <string name="title_activity_cronograma">cronograma</string>
+</resources>
