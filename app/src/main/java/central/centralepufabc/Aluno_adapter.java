@@ -41,16 +41,38 @@ public class Aluno_adapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        layout=(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v=layout.inflate(R.layout.ex_alunos, viewGroup, false);
-        ImageView img=(ImageView) v.findViewById(R.id.img_aluno);
-        TextView txt=(TextView) v.findViewById(R.id.frase_aluno);
-        TextView txt2=(TextView) v.findViewById(R.id.txt_curso);
+        if(i==0){
+            layout = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View v = layout.inflate(R.layout.first_lista, viewGroup, false);
+            TextView txt = (TextView) v.findViewById(R.id.txt_first);
+            txt.setText(arrayList.get(i).getFrase());
+            return v;
+        }else {
+            if (i % 2!= 0) {
+                layout = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View v = layout.inflate(R.layout.ex_alunos, viewGroup, false);
+                ImageView img = (ImageView) v.findViewById(R.id.img_aluno);
+                TextView txt = (TextView) v.findViewById(R.id.frase_aluno);
+                TextView txt2 = (TextView) v.findViewById(R.id.txt_curso);
 
 
-        img.setImageResource(arrayList.get(i).getImagem());
-        txt.setText(arrayList.get(i).getNome());
-        txt2.setText(arrayList.get(i).getFrase());
-        return v;
+                img.setImageResource(arrayList.get(i).getImagem());
+                txt.setText(arrayList.get(i).getNome());
+                txt2.setText(arrayList.get(i).getFrase());
+                return v;
+            } else {
+                layout = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                View v = layout.inflate(R.layout.ex_alunos2, viewGroup, false);
+                ImageView img = (ImageView) v.findViewById(R.id.img_aluno2);
+                TextView txt = (TextView) v.findViewById(R.id.frase_aluno2);
+                TextView txt2 = (TextView) v.findViewById(R.id.txt_curso2);
+
+
+                img.setImageResource(arrayList.get(i).getImagem());
+                txt.setText(arrayList.get(i).getNome());
+                txt2.setText(arrayList.get(i).getFrase());
+                return v;
+            }
+        }
     }
 }
