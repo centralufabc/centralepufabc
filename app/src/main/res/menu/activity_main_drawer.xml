@@ -12,14 +12,9 @@
             android:title="Horário das aulas" />
 
         <item
-            android:id="@+id/nav_mesa"
-            android:icon="@drawable/estudo"
-            android:title="Mesa de estudos" />
-
-        <item
             android:id="@+id/nav_cronograma"
             android:icon="@drawable/cronograma"
-            android:title="Plano de estudos" />
+            android:title="Áreas de estudo" />
 
         <item
             android:id="@+id/nav_monitoria"

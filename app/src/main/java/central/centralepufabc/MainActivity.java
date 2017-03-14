@@ -362,7 +362,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_hi) {
 
         } else if (id == R.id.nav_cronograma) {
-            Intent intent = new Intent(this, cronograma.class);
+            Intent intent = new Intent(this, lista_frentes.class);
             startActivity(intent);
         } else if (id == R.id.nav_equipe) {
 
@@ -372,9 +372,6 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_monitoria) {
 
-        } else if (id == R.id.nav_mesa) {
-            Intent intent = new Intent(this, mesa.class);
-            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

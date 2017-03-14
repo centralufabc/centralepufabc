@@ -33,9 +33,7 @@ public class lista_frentes extends AppCompatActivity {
         setContentView(R.layout.activity_lista_frentes);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        bd = openOrCreateDatabase("CentralEPUFABCDB", Context.MODE_PRIVATE, null);
-        cursor=bd.rawQuery("SELECT area from ultima_area",null);
-        cursor.moveToFirst();
+
         listView=(ExpandableListView) findViewById(R.id.lista1);
         initData();
         listAdapter=new ListAdapter(this,listDataHeader,listHash);
@@ -49,12 +47,12 @@ public class lista_frentes extends AppCompatActivity {
         listDataHeader=new ArrayList<>();
         listHash=new HashMap<>();
 
-        cursor=bd.rawQuery("SELECT frente from frentes where area='"+cursor.getString(0)+"'",null);
-        cursor.moveToFirst();
-        while((cursor.getPosition()+1)<=cursor.getCount()) {
-            listDataHeader.add(cursor.getString(0));
-            cursor.moveToNext();
-        }
+        listDataHeader.add("Ciências da natureza");
+        listDataHeader.add("Ciências humanas");
+        listDataHeader.add("Linguagens");
+        listDataHeader.add("Matemática");
+        listDataHeader.add("Redação");
+
 
 
         List<String> um=new ArrayList<>();
@@ -62,78 +60,37 @@ public class lista_frentes extends AppCompatActivity {
         List<String> tres=new ArrayList<>();
         List<String> quatro=new ArrayList<>();
         List<String> cinco=new ArrayList<>();
-        List<String> seis=new ArrayList<>();
 
-        cursor.moveToFirst();
-        if(cursor.getCount()>=1){
-            c=bd.rawQuery("SELECT assunto from item where frente='"+cursor.getString(0)+"'",null);
-            c.moveToFirst();
-            while((c.getPosition()+1)<=c.getCount()){
-                um.add(c.getString(0));
-                c.moveToNext();
-            }
+
+        um.add("Física - Mecânica");
+        um.add("Física - Termologia");
+        um.add("Física - Eletromagnetismo");
             listHash.put(listDataHeader.get(0),um);
-        }
 
-        cursor.moveToNext();
-        if(cursor.getCount()>=2){
-            c=bd.rawQuery("SELECT assunto from item where frente='"+cursor.getString(0)+"'",null);
-            c.moveToFirst();
-            while((c.getPosition()+1)<=c.getCount()){
-                dois.add(c.getString(0));
-                c.moveToNext();
-            }
+        dois.add("História - História do Brasil");
+        dois.add("História - História geral");
+        dois.add("Geografia - Geofísica");
+        dois.add("Geografia - Geopolítica");
+        dois.add("Sociologia");
+        dois.add("Filosofia");
             listHash.put(listDataHeader.get(1),dois);
-        }
-
-        cursor.moveToNext();
-        if(cursor.getCount()>=3){
-            c=bd.rawQuery("SELECT assunto from item where frente='"+cursor.getString(0)+"'",null);
-            c.moveToFirst();
-            while((c.getPosition()+1)<=c.getCount()){
-                tres.add(c.getString(0));
-                c.moveToNext();
-            }
+        tres.add("História da arte");
+        tres.add("Inglês");
+        tres.add("Literatura");
             listHash.put(listDataHeader.get(2),tres);
-        }
-
-        cursor.moveToNext();
-        if(cursor.getCount()>=4){
-            c=bd.rawQuery("SELECT assunto from item where frente='"+cursor.getString(0)+"'",null);
-            c.moveToFirst();
-            while((c.getPosition()+1)<=c.getCount()){
-                quatro.add(c.getString(0));
-                c.moveToNext();
-            }
+        quatro.add("Álgebra I");
+        quatro.add("Álgebra II");
+        quatro.add("Geometria I");
+        quatro.add("Geometria II");
+        quatro.add("Aula de exercícios");
             listHash.put(listDataHeader.get(3),quatro);
-        }
-
-        cursor.moveToNext();
-        if(cursor.getCount()>=5){
-            c=bd.rawQuery("SELECT assunto from item where frente='"+cursor.getString(0)+"'",null);
-            c.moveToFirst();
-            while((c.getPosition()+1)<=c.getCount()){
-                cinco.add(c.getString(0));
-                c.moveToNext();
-            }
+        cinco.add("Grámatica");
+        cinco.add("Redação");
             listHash.put(listDataHeader.get(4),cinco);
+
+
         }
 
-        cursor.moveToNext();
-        if(cursor.getCount()>=6){
-            c=bd.rawQuery("SELECT assunto from item where frente='"+cursor.getString(0)+"'",null);
-            c.moveToFirst();
-            while((c.getPosition()+1)<=c.getCount()){
-                seis.add(c.getString(0));
-                c.moveToNext();
-            }
-            listHash.put(listDataHeader.get(5), seis);
-        }
-
-
-
-
-    }
 
     public void voltar(View view) {
         finish();
