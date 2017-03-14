@@ -372,6 +372,9 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_monitoria) {
 
+        } else if (id == R.id.nav_mesa) {
+            Intent intent = new Intent(this, mesa.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -602,19 +605,18 @@ public class MainActivity extends AppCompatActivity
             bd.execSQL("INSERT INTO frentes VALUES('Matemática','Matemática básica');");
             bd.execSQL("INSERT INTO frentes VALUES('Matemática','Algebra I');");
             bd.execSQL("INSERT INTO frentes VALUES('Matemática','Algebra II');");
+            bd.execSQL("INSERT INTO frentes VALUES('Redação','Redação');");
 
             bd.execSQL("CREATE TABLE IF NOT EXISTS item (assunto text not null,frente text not null);");
-            bd.execSQL("INSERT INTO item VALUES('Matemática','Geometria Analitica');");
-            bd.execSQL("INSERT INTO item VALUES('Matemática','Probabilidade e estatistica');");
-            bd.execSQL("INSERT INTO item VALUES('Matemática','Matemática básica');");
-            bd.execSQL("INSERT INTO item VALUES('Função','Algebra I');");
-            bd.execSQL("INSERT INTO item VALUES('Função','Algebra I');");
-            bd.execSQL("INSERT INTO item VALUES('Função','Algebra I');");
-            bd.execSQL("INSERT INTO item VALUES('Função','Algebra I');");
-            bd.execSQL("INSERT INTO item VALUES('Função','Algebra I');");
-            bd.execSQL("INSERT INTO item VALUES('Função','Algebra I');");
-            bd.execSQL("INSERT INTO item VALUES('Função','Algebra I');");
-            bd.execSQL("INSERT INTO item VALUES('Fração','Algebra II');");
+            bd.execSQL("INSERT INTO item VALUES('Potenciação','Matemática básica');");
+            bd.execSQL("INSERT INTO item VALUES('Radiciação','Matemática básica');");
+            bd.execSQL("INSERT INTO item VALUES('Frações','Matemática básica');");
+            bd.execSQL("INSERT INTO item VALUES('Função de 1º grau','Matemática básica');");
+            bd.execSQL("INSERT INTO item VALUES('Argumentação','Redação');");
+            bd.execSQL("INSERT INTO item VALUES('Introdução','Redação');");
+            bd.execSQL("INSERT INTO item VALUES('Desenvolvimento','Redação');");
+            bd.execSQL("INSERT INTO item VALUES('Conclusão','Redação');");
+            bd.execSQL("INSERT INTO item VALUES('Artigo de opinião','Redação');");
 
             bd.execSQL("CREATE TABLE IF NOT EXISTS aulas (nome_materia text not null, campus text not null, dia text not null, nome_prof text not null, sala text not null, bloco text, frequencia text not null, hora_inicio INTEGER, hora_fim INTEGER);");
 

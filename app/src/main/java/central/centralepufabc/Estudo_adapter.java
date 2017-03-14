@@ -15,11 +15,11 @@ import java.util.ArrayList;
  */
 
 public class Estudo_adapter extends BaseAdapter {
-    private ArrayList<Areas> arrayList;
+    private ArrayList<Estudo> arrayList;
     private Context context;
     private LayoutInflater layout;
 
-    public Estudo_adapter(Context context, ArrayList<Areas> arrayList) {
+    public Estudo_adapter(Context context, ArrayList<Estudo> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
     }
@@ -47,7 +47,7 @@ public class Estudo_adapter extends BaseAdapter {
         TextView txt_d=(TextView) v.findViewById(R.id.txt_desc);
 
         txt_t.setText(arrayList.get(i).getNome());
-        txt_d.setText(arrayList.get(i).getNome());
+        txt_d.setText(arrayList.get(i).getDesc());
         return v;
     }
 }

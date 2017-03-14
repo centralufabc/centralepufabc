@@ -39,6 +39,10 @@
         <activity
             android:name=".lista_frentes"
             android:label="@string/title_activity_lista_frentes"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".mesa"
+            android:label="@string/title_activity_mesa"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
