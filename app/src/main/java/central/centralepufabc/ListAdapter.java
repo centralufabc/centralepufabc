@@ -17,6 +17,7 @@ import java.util.List;
 public class ListAdapter extends BaseExpandableListAdapter {
     private Context context;
     private List<String> listData;
+
     private HashMap<String, List<String>> listHashMap;
 
     public ListAdapter(Context context, List<String> listData, HashMap<String, List<String>> listHashMap) {
