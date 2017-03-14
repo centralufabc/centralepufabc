@@ -367,6 +367,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_equipe) {
 
         } else if (id == R.id.nav_quality) {
+            Intent intent = new Intent(this, alunos.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_calculadora) {
 

@@ -35,6 +35,10 @@
             android:name=".lista_frentes"
             android:label="@string/title_activity_lista_frentes"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".alunos"
+            android:label="@string/title_activity_alunos"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
