@@ -593,6 +593,29 @@ public class MainActivity extends AppCompatActivity
             bd.execSQL("INSERT INTO local_salvo VALUES('Terminal leste','1');");
             bd.execSQL("INSERT INTO local_salvo VALUES('Santo André','2');");
 
+            bd.execSQL("CREATE TABLE IF NOT EXISTS ultima_area (area text not null);");
+            bd.execSQL("INSERT INTO ultima_area VALUES('Matemática');");
+
+            bd.execSQL("CREATE TABLE IF NOT EXISTS frentes (area text not null,frente text not null);");
+            bd.execSQL("INSERT INTO frentes VALUES('Matemática','Geometria Analitica');");
+            bd.execSQL("INSERT INTO frentes VALUES('Matemática','Probabilidade e estatistica');");
+            bd.execSQL("INSERT INTO frentes VALUES('Matemática','Matemática básica');");
+            bd.execSQL("INSERT INTO frentes VALUES('Matemática','Algebra I');");
+            bd.execSQL("INSERT INTO frentes VALUES('Matemática','Algebra II');");
+
+            bd.execSQL("CREATE TABLE IF NOT EXISTS item (assunto text not null,frente text not null);");
+            bd.execSQL("INSERT INTO item VALUES('Matemática','Geometria Analitica');");
+            bd.execSQL("INSERT INTO item VALUES('Matemática','Probabilidade e estatistica');");
+            bd.execSQL("INSERT INTO item VALUES('Matemática','Matemática básica');");
+            bd.execSQL("INSERT INTO item VALUES('Função','Algebra I');");
+            bd.execSQL("INSERT INTO item VALUES('Função','Algebra I');");
+            bd.execSQL("INSERT INTO item VALUES('Função','Algebra I');");
+            bd.execSQL("INSERT INTO item VALUES('Função','Algebra I');");
+            bd.execSQL("INSERT INTO item VALUES('Função','Algebra I');");
+            bd.execSQL("INSERT INTO item VALUES('Função','Algebra I');");
+            bd.execSQL("INSERT INTO item VALUES('Função','Algebra I');");
+            bd.execSQL("INSERT INTO item VALUES('Fração','Algebra II');");
+
             bd.execSQL("CREATE TABLE IF NOT EXISTS aulas (nome_materia text not null, campus text not null, dia text not null, nome_prof text not null, sala text not null, bloco text, frequencia text not null, hora_inicio INTEGER, hora_fim INTEGER);");
 
             bd.execSQL("INSERT INTO aulas VALUES('Quimica','Santo André','Segunda-feira','Leonardo','104-0','Bloco A','Semanal','1845','1930');");
@@ -946,102 +969,102 @@ public class MainActivity extends AppCompatActivity
     public  void preencher_aulinhas() {
         quinzenal.setText("Não sei");
         quinzenal.setVisibility(View.GONE);
-            controle = 0;
-            gerencia_aula = bd.rawQuery("SELECT * FROM aulas ORDER BY hora_inicio ASC", null);
-            if (gerencia_aula.getCount() == 0) {
-                nome_aula.setText("");
-                hora_aula.setText("Você não adicionou nenhuma aula.");
-                nome_prof.setText("Adicione aulas");
-                local_aula.setText("para que possamos te ajudar.");
-                avancar_aula.setAlpha(0.2f);
-                voltar_aula.setAlpha(0.2f);
+        controle = 0;
+        gerencia_aula = bd.rawQuery("SELECT * FROM aulas ORDER BY hora_inicio ASC", null);
+        if (gerencia_aula.getCount() == 0) {
+            nome_aula.setText("");
+            hora_aula.setText("Você não adicionou nenhuma aula.");
+            nome_prof.setText("Adicione aulas");
+            local_aula.setText("para que possamos te ajudar.");
+            avancar_aula.setAlpha(0.2f);
+            voltar_aula.setAlpha(0.2f);
+        } else {
+            dia = calendar.get(Calendar.DAY_OF_WEEK);
+            if (dia == 1) {
+                dia_consulta = "Domingo";
             } else {
-                dia = calendar.get(Calendar.DAY_OF_WEEK);
-                if (dia == 1) {
-                    dia_consulta = "Domingo";
+                if (dia == 2) {
+                    dia_consulta = "Segunda-feira";
                 } else {
-                    if (dia == 2) {
-                        dia_consulta = "Segunda-feira";
+                    if (dia == 3) {
+                        dia_consulta = "Terça-feira";
                     } else {
-                        if (dia == 3) {
-                            dia_consulta = "Terça-feira";
+                        if (dia == 4) {
+                            dia_consulta = "Quarta-feira";
                         } else {
-                            if (dia == 4) {
-                                dia_consulta = "Quarta-feira";
+                            if (dia == 5) {
+                                dia_consulta = "Quinta-feira";
                             } else {
-                                if (dia == 5) {
-                                    dia_consulta = "Quinta-feira";
+                                if (dia == 6) {
+                                    dia_consulta = "Sexta-feira";
                                 } else {
-                                    if (dia == 6) {
-                                        dia_consulta = "Sexta-feira";
-                                    } else {
-                                        if(dia==7) {
-                                            dia_consulta = "Sábado";
-                                        }
+                                    if(dia==7) {
+                                        dia_consulta = "Sábado";
                                     }
                                 }
                             }
                         }
                     }
                 }
+            }
 
-                gerencia_aula = bd.rawQuery("SELECT nome_materia,campus,nome_prof,sala,bloco,hora_inicio,hora_fim FROM aulas WHERE dia=='" + dia_consulta + "'  ORDER BY hora_inicio ASC", null);
-                if (gerencia_aula.getCount() == 0) {
-                    nome_aula.setText("");
-                    hora_aula.setText("Você não tem aula hoje");
-                    nome_prof.setText("Que pessoa de sorte.");
-                    local_aula.setText("");
-                    avancar_aula.setAlpha(0.2f);
-                    voltar_aula.setAlpha(0.2f);
-                } else {
-                    hora_atual = calendar.get(Calendar.HOUR_OF_DAY);
-                    hora_atual=hora_atual*100;
-                    hora_atual=hora_atual+calendar.get(Calendar.MINUTE);
-                    gerencia_aula.moveToFirst();
-                    while (!gerencia_aula.isLast() && controle == 0) {
-                        if (gerencia_aula.getInt(5) >= hora_atual || gerencia_aula.getInt(6) > hora_atual) {
-                            controle = 1;
-                        } else {
-                            gerencia_aula.moveToNext();
-                        }
-                    }
-                    if (gerencia_aula.isLast() && controle == 0) {
-                        if (gerencia_aula.getInt(5) >= hora_atual || gerencia_aula.getInt(6) > hora_atual) {
-                            controle = 1;
-                        }
-                    }
-                    if (controle == 1) {
-                        nome_aula.setText(gerencia_aula.getString(0));
-                        String conserta_minuto=String.valueOf(gerencia_aula.getInt(5)%100);
-                        if(conserta_minuto.equals("0")){conserta_minuto="00";}
-                        String conserta_minuto2=String.valueOf(gerencia_aula.getInt(6)%100);
-                        if(conserta_minuto2.equals("0")){conserta_minuto2="00";}
-
-                        hora_aula.setText(String.valueOf((gerencia_aula.getInt(5))/100) + "h"+conserta_minuto+" às " + String.valueOf((gerencia_aula.getInt(6))/100) + "h"+conserta_minuto2);
-                        nome_prof.setText(gerencia_aula.getString(2));
-                        local_aula.setText(gerencia_aula.getString(3) + ", " + gerencia_aula.getString(4) + ", " + gerencia_aula.getString(1));
-                        if (gerencia_aula.isLast()) {
-                            avancar_aula.setAlpha(0.2f);
-                        } else {
-                            avancar_aula.setAlpha(1.0f);
-                        }
-
-                        if (gerencia_aula.isFirst()) {
-                            voltar_aula.setAlpha(0.2f);
-                        } else {
-                            voltar_aula.setAlpha(1.0f);
-                        }
+            gerencia_aula = bd.rawQuery("SELECT nome_materia,campus,nome_prof,sala,bloco,hora_inicio,hora_fim FROM aulas WHERE dia=='" + dia_consulta + "'  ORDER BY hora_inicio ASC", null);
+            if (gerencia_aula.getCount() == 0) {
+                nome_aula.setText("");
+                hora_aula.setText("Você não tem aula hoje");
+                nome_prof.setText("Que pessoa de sorte.");
+                local_aula.setText("");
+                avancar_aula.setAlpha(0.2f);
+                voltar_aula.setAlpha(0.2f);
+            } else {
+                hora_atual = calendar.get(Calendar.HOUR_OF_DAY);
+                hora_atual=hora_atual*100;
+                hora_atual=hora_atual+calendar.get(Calendar.MINUTE);
+                gerencia_aula.moveToFirst();
+                while (!gerencia_aula.isLast() && controle == 0) {
+                    if (gerencia_aula.getInt(5) >= hora_atual || gerencia_aula.getInt(6) > hora_atual) {
+                        controle = 1;
                     } else {
-                        nome_aula.setText("");
-                        hora_aula.setText("Hoje suas aulas acabaram");
-                        nome_prof.setText("Vá para casa ser feliz.");
-                        local_aula.setText("");
-                        avancar_aula.setAlpha(0.2f);
-                        voltar_aula.setAlpha(1.0f);
-                        gerencia_aula.moveToLast();
+                        gerencia_aula.moveToNext();
                     }
                 }
+                if (gerencia_aula.isLast() && controle == 0) {
+                    if (gerencia_aula.getInt(5) >= hora_atual || gerencia_aula.getInt(6) > hora_atual) {
+                        controle = 1;
+                    }
+                }
+                if (controle == 1) {
+                    nome_aula.setText(gerencia_aula.getString(0));
+                    String conserta_minuto=String.valueOf(gerencia_aula.getInt(5)%100);
+                    if(conserta_minuto.equals("0")){conserta_minuto="00";}
+                    String conserta_minuto2=String.valueOf(gerencia_aula.getInt(6)%100);
+                    if(conserta_minuto2.equals("0")){conserta_minuto2="00";}
+
+                    hora_aula.setText(String.valueOf((gerencia_aula.getInt(5))/100) + "h"+conserta_minuto+" às " + String.valueOf((gerencia_aula.getInt(6))/100) + "h"+conserta_minuto2);
+                    nome_prof.setText(gerencia_aula.getString(2));
+                    local_aula.setText(gerencia_aula.getString(3) + ", " + gerencia_aula.getString(4) + ", " + gerencia_aula.getString(1));
+                    if (gerencia_aula.isLast()) {
+                        avancar_aula.setAlpha(0.2f);
+                    } else {
+                        avancar_aula.setAlpha(1.0f);
+                    }
+
+                    if (gerencia_aula.isFirst()) {
+                        voltar_aula.setAlpha(0.2f);
+                    } else {
+                        voltar_aula.setAlpha(1.0f);
+                    }
+                } else {
+                    nome_aula.setText("");
+                    hora_aula.setText("Hoje suas aulas acabaram");
+                    nome_prof.setText("Vá para casa ser feliz.");
+                    local_aula.setText("");
+                    avancar_aula.setAlpha(0.2f);
+                    voltar_aula.setAlpha(1.0f);
+                    gerencia_aula.moveToLast();
+                }
             }
+        }
     }
 
     public void avanca_aula(View view){

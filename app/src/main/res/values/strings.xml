@@ -8,4 +8,5 @@
     <string name="title_activity_fretado">fretado</string>
     <string name="title_activity_aulas">aulas</string>
     <string name="title_activity_cronograma">cronograma</string>
+    <string name="title_activity_lista_frentes">lista_frentes</string>
 </resources>

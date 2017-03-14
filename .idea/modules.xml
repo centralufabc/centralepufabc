@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CENTRALEPUFABC.iml" filepath="$PROJECT_DIR$/CENTRALEPUFABC.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/centralepufabc.iml" filepath="$PROJECT_DIR$/centralepufabc.iml" />
     </modules>
   </component>
 </project>
