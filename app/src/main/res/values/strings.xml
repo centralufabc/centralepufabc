@@ -11,4 +11,6 @@
     <string name="title_activity_lista_frentes">lista_frentes</string>
     <string name="title_activity_mesa">mesa</string>
     <string name="title_activity_alunos">alunos</string>
+    <string name="title_activity_equipe">equipe</string>
+    <string name="title_activity_calendario">Calendario</string>
 </resources>

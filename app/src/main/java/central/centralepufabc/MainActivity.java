@@ -1,5 +1,7 @@
 package central.centralepufabc;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -77,6 +79,17 @@ public class MainActivity extends AppCompatActivity
         local_aula=(TextView) findViewById(R.id.txt_sala);
         voltar_aula=(ImageButton) findViewById(R.id.bt_voltar_aula);
         avancar_aula=(ImageButton) findViewById(R.id.bt_avancar_aula);
+
+        //broadcast
+        Intent it=new Intent("Alarme");
+        PendingIntent p=PendingIntent.getBroadcast(this,0,it,0);
+
+        Calendar c=Calendar.getInstance();
+        c.setTimeInMillis(System.currentTimeMillis());
+
+        AlarmManager alarme=(AlarmManager) getSystemService(ALARM_SERVICE);
+        alarme.setRepeating(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),60000,p);
+        //
 
         criarbancodedados();// nome auto-explicativo
 
@@ -350,7 +363,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, aulas.class);
             startActivity(intent);
         } else if (id == R.id.nav_calendario) {
-
+            Intent intent = new Intent(this, Calendario.class);
+            startActivity(intent);
         } else if (id == R.id.nav_ru) {
 
         } else if (id == R.id.nav_contador) {
@@ -365,7 +379,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, lista_frentes.class);
             startActivity(intent);
         } else if (id == R.id.nav_equipe) {
-
+            Intent intent = new Intent(this, equipe.class);
+            startActivity(intent);
         } else if (id == R.id.nav_quality) {
             Intent intent = new Intent(this, alunos.class);
             startActivity(intent);
@@ -595,8 +610,11 @@ public class MainActivity extends AppCompatActivity
             bd.execSQL("INSERT INTO local_salvo VALUES('Terminal leste','1');");
             bd.execSQL("INSERT INTO local_salvo VALUES('Santo André','2');");
 
-            bd.execSQL("CREATE TABLE IF NOT EXISTS ultima_area (area text not null);");
-            bd.execSQL("INSERT INTO ultima_area VALUES('Matemática');");
+            bd.execSQL("CREATE TABLE IF NOT EXISTS dias (desc_dia text not null,dia INTEGER,dia_mes text,mes text,status text,msg text);");
+            bd.execSQL("INSERT INTO dias VALUES('Ínicio das incrições do Enem','127','08','maio','notificar','oi');");
+            bd.execSQL("INSERT INTO dias VALUES('Prazo final das incrições do Enem','138','19','maio','nao','como');");
+            bd.execSQL("INSERT INTO dias VALUES('Primeiro dia do Enem','308','05','nov','notificar','vai');");
+            bd.execSQL("INSERT INTO dias VALUES('Segundo dia do Enem','315','12','nov','notificar','vc');");
 
             bd.execSQL("CREATE TABLE IF NOT EXISTS frentes (area text not null,frente text not null);");
             bd.execSQL("INSERT INTO frentes VALUES('Matemática','Geometria Analitica');");
