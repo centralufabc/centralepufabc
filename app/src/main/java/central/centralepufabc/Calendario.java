@@ -45,6 +45,7 @@ public class Calendario extends AppCompatActivity {
     }
 
     private void carregar_lista(){
+        arrayAreas.add(new Dia_importante(cursor.getString(0),cursor.getString(1),"Você receberá notificações das datas com fundo em verde, caso não queira ser notificado basta tocar sobre a data, assim o fundo ficará branco e você não será notificado.",cursor.getString(3)));
         while(cursor.getPosition()<cursor.getCount()){
             arrayAreas.add(new Dia_importante(cursor.getString(0),cursor.getString(1),cursor.getString(2),cursor.getString(3)));
             cursor.moveToNext();

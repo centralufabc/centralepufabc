@@ -10,16 +10,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <receiver android:name="central.centralepufabc.Broadcast" >
+        <receiver android:name=".Broadcast">
             <intent-filter>
                 <action android:name="Alarme" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
-
-        <receiver android:name="central.centralepufabc.CriaAlarme" >
+        <receiver android:name=".CriaAlarme">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
 
@@ -63,6 +61,18 @@
         <activity
             android:name=".Calendario"
             android:label="@string/title_activity_calendario"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".contador"
+            android:label="@string/title_activity_contador"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".sobre"
+            android:label="@string/title_activity_sobre"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".bugs"
+            android:label="@string/title_activity_bugs"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

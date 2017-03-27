@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:paddingTop="64dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context="com.centralufabc.centralufabc.SobreActivity"
+        tools:showIn="@layout/activity_sobre">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Desenvolvedores"
+            android:paddingLeft="16dp"
+            android:paddingStart="16dp"
+            android:textColor="@color/colorAccent"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textSize="22sp"/>
+
+        <LinearLayout
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_width="0dp"
+                android:gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/kleverson_nascimento"/>
+
+                <TextView
+                    android:paddingTop="8dp"
+                    android:id="@+id/kleverson_nome"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kleverson Nascimento"
+                    android:textSize="16sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/linkedinKleverson"
+                        android:layout_margin="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerInside"
+                        android:tag="https://www.linkedin.com/in/kleverson-n-2414138b"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/linkedin"/>
+
+                    <ImageView
+                        android:id="@+id/githubKleverson"
+                        android:layout_margin="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:tag="https://github.com/KleversonNascimento"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/github"/>
+
+                    <ImageView
+                        android:id="@+id/facebookKleverson"
+                        android:layout_margin="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerInside"
+                        android:adjustViewBounds="true"
+                        android:tag="https://www.facebook.com/kleverson.nascimento.1"
+                        android:src="@drawable/facebook"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center_horizontal"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/rodrigo_mayer"/>
+
+                <TextView
+                    android:paddingTop="8dp"
+                    android:id="@+id/rodrigo_nome"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Rodrigo Mayer"
+                    android:textSize="16sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/linkedinRodrigo"
+                        android:layout_margin="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerInside"
+                        android:tag="https://br.linkedin.com/in/rodrigo-mayer"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/linkedin"/>
+
+                    <ImageView
+                        android:id="@+id/githubRodrigo"
+                        android:layout_margin="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:tag="https://github.com/rodrigo98rm"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/github"/>
+
+                    <ImageView
+                        android:id="@+id/facebookRodrigo"
+                        android:layout_margin="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerInside"
+                        android:adjustViewBounds="true"
+                        android:tag="https://www.facebook.com/rodrigo98rm"
+                        android:src="@drawable/facebook"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"
+            android:layout_margin="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ícones"
+            android:paddingLeft="16dp"
+            android:paddingStart="16dp"
+            android:textColor="@color/colorAccent"
+            android:textSize="22sp"/>
+
+        <TextView
+            android:paddingTop="8dp"
+            android:paddingLeft="16dp"
+            android:paddingStart="16dp"
+            android:paddingBottom="8dp"
+            android:id="@+id/logoCredito"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/credito_logo"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:paddingLeft="16dp"
+            android:paddingStart="16dp"
+            android:paddingBottom="8dp"
+            android:id="@+id/dave_icon_credit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dave_icon_credit"/>
+
+        <TextView
+            android:paddingLeft="16dp"
+            android:paddingStart="16dp"
+            android:paddingBottom="8dp"
+            android:id="@+id/google_icons_credit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/google_icons_credit"/>
+
+    </LinearLayout>
+
+</ScrollView>

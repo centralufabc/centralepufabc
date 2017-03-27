@@ -368,11 +368,14 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_ru) {
 
         } else if (id == R.id.nav_contador) {
-
+            Intent intent = new Intent(this, contador.class);
+            startActivity(intent);
         } else if (id == R.id.nav_bugs) {
-
+            Intent intent = new Intent(this, bugs.class);
+            startActivity(intent);
         } else if (id == R.id.nav_sobre) {
-
+            Intent intent = new Intent(this, sobre.class);
+            startActivity(intent);
         } else if (id == R.id.nav_hi) {
 
         } else if (id == R.id.nav_cronograma) {
@@ -611,10 +614,11 @@ public class MainActivity extends AppCompatActivity
             bd.execSQL("INSERT INTO local_salvo VALUES('Santo André','2');");
 
             bd.execSQL("CREATE TABLE IF NOT EXISTS dias (desc_dia text not null,dia INTEGER,dia_mes text,mes text,status text,msg text);");
-            bd.execSQL("INSERT INTO dias VALUES('Ínicio das incrições do Enem','127','08','maio','notificar','oi');");
-            bd.execSQL("INSERT INTO dias VALUES('Prazo final das incrições do Enem','138','19','maio','nao','como');");
-            bd.execSQL("INSERT INTO dias VALUES('Primeiro dia do Enem','308','05','nov','notificar','vai');");
-            bd.execSQL("INSERT INTO dias VALUES('Segundo dia do Enem','315','12','nov','notificar','vc');");
+            bd.execSQL("INSERT INTO dias VALUES('Divulgação do edital do Enem','100','10','abril','notificar','Central EPUFABC');");
+            bd.execSQL("INSERT INTO dias VALUES('Ínicio das incrições do Enem','127','08','maio','notificar','Central EPUFABC');");
+            bd.execSQL("INSERT INTO dias VALUES('Prazo final das incrições do Enem','138','19','maio','notificar','Central EPUFABC');");
+            bd.execSQL("INSERT INTO dias VALUES('Primeiro dia do Enem','308','05','nov','notificar','Central EPUFABC');");
+            bd.execSQL("INSERT INTO dias VALUES('Segundo dia do Enem','315','12','nov','notificar','Central EPUFABC');");
 
             bd.execSQL("CREATE TABLE IF NOT EXISTS frentes (area text not null,frente text not null);");
             bd.execSQL("INSERT INTO frentes VALUES('Matemática','Geometria Analitica');");
@@ -1128,7 +1132,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public void abrir_grade(View view){
+    public void abrir_grade(View view) {
         Intent intent = new Intent(this, aulas.class);
         startActivity(intent);
     }

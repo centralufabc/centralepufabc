@@ -28,11 +28,8 @@ public class equipe extends AppCompatActivity {
     }
 
     private void carregar_lista(){
-        arrayAreas.add(new Funcionário("Thales Liferson","Coordenador de matemática",R.drawable.thales));
-        arrayAreas.add(new Funcionário("Thales Liferson","Coordenador de física",R.drawable.thales));
-        arrayAreas.add(new Funcionário("Thales Liferson","Coordenador de geografia",R.drawable.thales));
-        arrayAreas.add(new Funcionário("Thales Liferson","Professor de matemática",R.drawable.thales));
-        arrayAreas.add(new Funcionário("Thales Liferson","Professor de história",R.drawable.thales));
+        arrayAreas.add(new Funcionário("Walter White","Professor de química",R.drawable.walter));
+
 
 
 
