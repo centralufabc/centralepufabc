@@ -1,16 +1,22 @@
 package central.centralepufabc;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -31,6 +37,8 @@ public class aulas extends AppCompatActivity {
 
     Cursor segunda,terca,quarta,quinta,sexta,sabado;
 
+    FloatingActionButton adicionar, excluir;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +47,9 @@ public class aulas extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         bd = openOrCreateDatabase("CentralEPUFABCDB", Context.MODE_PRIVATE, null);
+
+        adicionar=(FloatingActionButton) findViewById(R.id.mais);
+        excluir=(FloatingActionButton) findViewById(R.id.excluir);
 
         nome_materia_segunda=(TextView) findViewById(R.id.txt_materia_segunda);
         horario_segunda=(TextView) findViewById(R.id.txt_horario_segunda);
@@ -83,14 +94,18 @@ public class aulas extends AppCompatActivity {
     }
 
     public void voltar(View view) {
+        Intent it=new Intent(this, MainActivity.class);
+        startActivity(it);
         finish();
     }
 
     public void preencher_aulinhas(){
         segunda = bd.rawQuery("SELECT nome_materia,campus,nome_prof,sala,bloco,hora_inicio,hora_fim FROM aulas WHERE dia=='Segunda-feira' ORDER BY hora_inicio ASC", null);
         if (segunda.getCount() == 0) {
+            excluir.setVisibility(View.GONE);
             sem_aulinhas(nome_materia_segunda, horario_segunda, nome_prof_segunda, localizacao_segunda, avancar_segunda, voltar_segunda);
         } else {
+            adicionar.setVisibility(View.GONE);
             segunda.moveToFirst();
             com_aulinhas(segunda, nome_materia_segunda, horario_segunda, nome_prof_segunda, localizacao_segunda, avancar_segunda, voltar_segunda);
         }
@@ -217,6 +232,54 @@ public class aulas extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public void adicionar_aula(View view){
+        Intent intent = new Intent(this, add_aulas.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void excluir_aula(View view){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Deseja realmente excluir suas aulas?")
+                .setCancelable(false)
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        bd.execSQL("DELETE FROM aulas WHERE frequencia='Semanal'");
+                        teste();
+                    }
+                })
+                .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    public void teste(){
+        Intent intent = new Intent(this, aulas.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) < 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            Log.d("CDA", "onKeyDown Called");
+            onBackPressed();
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void onBackPressed() {
+        Intent it=new Intent(this, MainActivity.class);
+        startActivity(it);
+        finish();
     }
 
 }

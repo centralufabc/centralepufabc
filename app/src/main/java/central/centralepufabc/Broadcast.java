@@ -26,8 +26,9 @@ public class Broadcast extends BroadcastReceiver {
         calendar = Calendar.getInstance(TimeZone.getTimeZone("Brazil/East"));
         bd = context.openOrCreateDatabase("CentralEPUFABCDB", Context.MODE_PRIVATE, null);
         int dia = calendar.get(Calendar.DAY_OF_YEAR);
+        int hora_dia=calendar.get(Calendar.HOUR_OF_DAY);
         cursor = bd.rawQuery("SELECT dia_mes,mes,desc_dia,status,dia,msg FROM dias WHERE (dia='"+dia+"' AND status='notificar') ORDER BY dia ASC",null);
-        if(cursor.getCount()!=0) {
+        if(cursor.getCount()!=0 && hora_dia>=10 && hora_dia<=22) {
             cursor.moveToFirst();
 
             Intent viewIntent = new Intent(context, Calendario.class);

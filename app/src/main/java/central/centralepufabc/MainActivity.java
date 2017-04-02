@@ -362,6 +362,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_grade) {
             Intent intent = new Intent(this, aulas.class);
             startActivity(intent);
+            finish();
         } else if (id == R.id.nav_calendario) {
             Intent intent = new Intent(this, Calendario.class);
             startActivity(intent);
@@ -389,7 +390,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_calculadora) {
-
+            Intent intent = new Intent(this, calculadora.class);
+            startActivity(intent);
         } else if (id == R.id.nav_monitoria) {
 
         }
@@ -640,36 +642,196 @@ public class MainActivity extends AppCompatActivity
             bd.execSQL("INSERT INTO item VALUES('Artigo de opinião','Redação');");
 
             bd.execSQL("CREATE TABLE IF NOT EXISTS aulas (nome_materia text not null, campus text not null, dia text not null, nome_prof text not null, sala text not null, bloco text, frequencia text not null, hora_inicio INTEGER, hora_fim INTEGER);");
+            //TURMA TARDE 1 SA
+            bd.execSQL("CREATE TABLE IF NOT EXISTS todas_turmas (nome_materia text not null, campus text not null, dia text not null, nome_prof text not null, sala text not null, bloco text, frequencia text not null, hora_inicio INTEGER, hora_fim INTEGER, turma text);");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geografia política','Santo André','Segunda-feira','Alan','101-0','Bloco A','Semanal','1330','1420','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('História geral','Santo André','Segunda-feira','Clóvis','101-0','Bloco A','Semanal','1420','1510','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia III','Santo André','Segunda-feira','Carla','101-0','Bloco A','Semanal','1510','1600','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Filosofia','Santo André','Segunda-feira','Gustavo Rios','101-0','Bloco A','Semanal','1620','1710','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química - FQ','Santo André','Segunda-feira','Danilo','101-0','Bloco A','Semanal','1710','1800','Turma 1 - Tarde - SA');");
 
-            bd.execSQL("INSERT INTO aulas VALUES('Quimica','Santo André','Segunda-feira','Leonardo','104-0','Bloco A','Semanal','1845','1930');");
-            bd.execSQL("INSERT INTO aulas VALUES('Ingles/Sociologia','Santo André','Segunda-feira','Guilherme/Rodrigo','104-0','Bloco A','Semanal','1930','2015');");
-            bd.execSQL("INSERT INTO aulas VALUES('Biologia','Santo André','Segunda-feira','Carla','104-0','Bloco A','Semanal','2015','2100');");
-            bd.execSQL("INSERT INTO aulas VALUES('Gramatica','Santo André','Segunda-feira','Nathalia','104-0','Bloco A','Semanal','2115','2200');");
-            bd.execSQL("INSERT INTO aulas VALUES('Gramatica','Santo André','Segunda-feira','Nathalia','104-0','Bloco A','Semanal','2200','2245');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Física mecânica','Santo André','Terça-feira','Danyela Lenz','101-0','Bloco A','Semanal','1330','1420','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','Santo André','Terça-feira','Giovanna','101-0','Bloco A','Semanal','1420','1510','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','Santo André','Terça-feira','Giovanna','101-0','Bloco A','Semanal','1510','1600','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geografia física','Santo André','Terça-feira','Gabriel Carneiro','101-0','Bloco A','Semanal','1620','1710','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Artes','Santo André','Terça-feira','Nathália Torres','101-0','Bloco A','Semanal','1710','1800','Turma 1 - Tarde - SA');");
 
-            bd.execSQL("INSERT INTO aulas VALUES('História','Santo André','Terça-feira','Maróstica/Gustavo','104-0','Bloco A','Semanal','1845','1930');");
-            bd.execSQL("INSERT INTO aulas VALUES('Quimica','Santo André','Terça-feira','RR','104-0','Bloco A','Semanal','1930','2015');");
-            bd.execSQL("INSERT INTO aulas VALUES('HA/Literatura','Santo André','Terça-feira','Nathalia/Morena','104-0','Bloco A','Semanal','2015','2100');");
-            bd.execSQL("INSERT INTO aulas VALUES('Redação','Santo André','Terça-feira','Anna Carla','104-0','Bloco A','Semanal','2115','2200');");
-            bd.execSQL("INSERT INTO aulas VALUES('Redação','Santo André','Terça-feira','Anna Carla','104-0','Bloco A','Semanal','2200','2245');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Eletromagnetismo','Santo André','Quarta-feira','Renan','101-0','Bloco A','Semanal','1330','1420','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geometria II','Santo André','Quarta-feira','Gláucia','101-0','Bloco A','Semanal','1420','1510','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Literatura','Santo André','Quarta-feira','Tainara','101-0','Bloco A','Semanal','1510','1600','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Inglês/Sociologia','Santo André','Quarta-feira','Guilherme/Gabriel','101-0','Bloco A','Semanal','1620','1710','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('História do Brasil','Santo André','Quarta-feira','Petrus','101-0','Bloco A','Semanal','1710','1800','Turma 1 - Tarde - SA');");
 
-            bd.execSQL("INSERT INTO aulas VALUES('História','Santo André','Quarta-feira','Julio','104-0','Bloco A','Semanal','1845','1930');");
-            bd.execSQL("INSERT INTO aulas VALUES('Biologia','Santo André','Quarta-feira','Vinicius','104-0','Bloco A','Semanal','1930','2015');");
-            bd.execSQL("INSERT INTO aulas VALUES('Matemática','Santo André','Quarta-feira','Paulo','104-0','Bloco A','Semanal','2015','2100');");
-            bd.execSQL("INSERT INTO aulas VALUES('Física','Santo André','Quarta-feira','Murillo','104-0','Bloco A','Semanal','2115','2200');");
-            bd.execSQL("INSERT INTO aulas VALUES('Matemática','Santo André','Quarta-feira','Paulo Dante','104-0','Bloco A','Semanal','2200','2245');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('PEM','Santo André','Quinta-feira','Gabriel','101-0','Bloco A','Semanal','1330','1420','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Física térmica','Santo André','Quinta-feira','Rodrigo','101-0','Bloco A','Semanal','1420','1510','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geometria I','Santo André','Quinta-feira','Gyslla','101-0','Bloco A','Semanal','1510','1600','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química orgânica','Santo André','Quinta-feira','Bruno','101-0','Bloco A','Semanal','1620','1710','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia I','Santo André','Quinta-feira','Nathália','101-0','Bloco A','Semanal','1710','1800','Turma 1 - Tarde - SA');");
 
-            bd.execSQL("INSERT INTO aulas VALUES('Biologia','Santo André','Quinta-feira','Daiane','104-0','Bloco A','Semanal','1845','1930');");
-            bd.execSQL("INSERT INTO aulas VALUES('Fisica','Santo André','Quinta-feira','Renan','104-0','Bloco A','Semanal','1930','2015');");
-            bd.execSQL("INSERT INTO aulas VALUES('Quimica','Santo André','Quinta-feira','Thais','104-0','Bloco A','Semanal','2015','2100');");
-            bd.execSQL("INSERT INTO aulas VALUES('Fisica','Santo André','Quinta-feira','Humberto','104-0','Bloco A','Semanal','2115','2200');");
-            bd.execSQL("INSERT INTO aulas VALUES('Matemática','Santo André','Quinta-feira','Passos','104-0','Bloco A','Semanal','2200','2245');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','Santo André','Sexta-feira','Giovanna','101-0','Bloco A','Semanal','1330','1420','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Álgebra II','Santo André','Sexta-feira','Diego Medeiros','101-0','Bloco A','Semanal','1420','1510','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química inorgânica','Santo André','Sexta-feira','Paulo','101-0','Bloco A','Semanal','1510','1600','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Álgebra I','Santo André','Sexta-feira','Poliana','101-0','Bloco A','Semanal','1620','1710','Turma 1 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia II','Santo André','Sexta-feira','Ótavio','101-0','Bloco A','Semanal','1710','1800','Turma 1 - Tarde - SA');");
 
-            bd.execSQL("INSERT INTO aulas VALUES('Diego','Santo André','Sexta-feira','Diego','104-0','Bloco A','Semanal','1845','1930');");
-            bd.execSQL("INSERT INTO aulas VALUES('Biologia','Santo André','Sexta-feira','Venâncio','104-0','Bloco A','Semanal','1930','2015');");
-            bd.execSQL("INSERT INTO aulas VALUES('Geografia','Santo André','Sexta-feira','Gustavo','104-0','Bloco A','Semanal','2015','2100');");
-            bd.execSQL("INSERT INTO aulas VALUES('Matemática','Santo André','Sexta-feira','Barbara','104-0','Bloco A','Semanal','2115','2200');");
-            bd.execSQL("INSERT INTO aulas VALUES('Geografia','Santo André','Sexta-feira','Chico','104-0','Bloco A','Semanal','2200','2245');");
+
+            //TURMA TARDE 2 SA
+            bd.execSQL("INSERT INTO todas_turmas VALUES('História geral','Santo André','Segunda-feira','Clóvis','108-0','Bloco A','Semanal','1330','1420','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química - FQ','Santo André','Segunda-feira','Danilo','108-0','Bloco A','Semanal','1420','1510','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Filosofia','Santo André','Segunda-feira','Gustavo Rios','108-0','Bloco A','Semanal','1510','1600','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Literatura','Santo André','Segunda-feira','Tainara','108-0','Bloco A','Semanal','1620','1710','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia I','Santo André','Segunda-feira','Nathalia','108-0','Bloco A','Semanal','1710','1800','Turma 2 - Tarde - SA');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia III','Santo André','Terça-feira','Carla','108-0','Bloco A','Semanal','1330','1420','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Física mecânica','Santo André','Terça-feira','Danyela Lenz','108-0','Bloco A','Semanal','1420','1510','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geografia física','Santo André','Terça-feira','Gabriel Carneiro','108-0','Bloco A','Semanal','1510','1600','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Artes','Santo André','Terça-feira','Nathália Torres','108-0','Bloco A','Semanal','1620','1710','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('História do Brasil','Santo André','Terça-feira','Petrus','108-0','Bloco A','Semanal','1710','1800','Turma 2 - Tarde - SA');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geometria II','Santo André','Quarta-feira','Glaúcia','108-0','Bloco A','Semanal','1330','1420','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Eletromagnetismo','Santo André','Quarta-feira','Renan','108-0','Bloco A','Semanal','1420','1510','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geografia política','Santo André','Quarta-feira','Alan','108-0','Bloco A','Semanal','1510','1600','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Inglês/Sociologia','Santo André','Quarta-feira','Guilherme/Gabriel','108-0','Bloco A','Semanal','1620','1710','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','Santo André','Quarta-feira','Marcelo','108-0','Bloco A','Semanal','1710','1800','Turma 2 - Tarde - SA');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia II','Santo André','Quinta-feira','Otávio','108-0','Bloco A','Semanal','1330','1420','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('PEM','Santo André','Quinta-feira','Gabriel','108-0','Bloco A','Semanal','1420','1510','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Física térmica','Santo André','Quinta-feira','Rodrigo','108-0','Bloco A','Semanal','1510','1600','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geometria I','Santo André','Quinta-feira','Gyslla','108-0','Bloco A','Semanal','1620','1710','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química orgânica','Santo André','Quinta-feira','Bruno','108-0','Bloco A','Semanal','1710','1800','Turma 2 - Tarde - SA');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Álgebra II','Santo André','Sexta-feira','Diego Medeiros','108-0','Bloco A','Semanal','1330','1420','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química inorgânica','Santo André','Sexta-feira','Paulo','108-0','Bloco A','Semanal','1420','1510','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Algebra I','Santo André','Sexta-feira','Poliana','108-0','Bloco A','Semanal','1510','1600','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','Santo André','Sexta-feira','Marcelo','108-0','Bloco A','Semanal','1620','1710','Turma 2 - Tarde - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','Santo André','Sexta-feira','Marcelo','108-0','Bloco A','Semanal','1710','1800','Turma 2 - Tarde - SA');");
+
+            //TURMA NOITE 1 SA
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia III','Santo André','Segunda-feira','Carla','105-0','Bloco A','Semanal','1845','1930','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','Santo André','Segunda-feira','Guilherme','105-0','Bloco A','Semanal','1930','2015','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','Santo André','Segunda-feira','Guilherme','105-0','Bloco A','Semanal','2015','2100','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Artes','Santo André','Segunda-feira','Nathália','105-0','Bloco A','Semanal','2115','2200','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química orgânica','Santo André','Segunda-feira','Rodrigo','105-0','Bloco A','Semanal','2200','2245','Turma 1 - Noite - SA');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Álgebra II','Santo André','Terça-feira','Diego Medeiros','105-0','Bloco A','Semanal','1845','1930','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('História do Brasil','Santo André','Terça-feira','Natalia Maróstica','105-0','Bloco A','Semanal','1930','2015','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geometria II','Santo André','Terça-feira','Glaúcia','105-0','Bloco A','Semanal','2015','2100','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('História geral','Santo André','Terça-feira','Clóvis','105-0','Bloco A','Semanal','2115','2200','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Física térmica/óptica','Santo André','Terça-feira','Carlos','105-0','Bloco A','Semanal','2200','2245','Turma 1 - Noite - SA');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Algebra I','Santo André','Quarta-feira','Thales','105-0','Bloco A','Semanal','1845','1930','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Literatura','Santo André','Quarta-feira','Tainara','105-0','Bloco A','Semanal','1930','2015','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia I','Santo André','Quarta-feira','Bárbara','105-0','Bloco A','Semanal','2015','2100','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química inorgânica','Santo André','Quarta-feira','Paulo','105-0','Bloco A','Semanal','2115','2200','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Eletromagnetismo','Santo André','Quarta-feira','Renan','105-0','Bloco A','Semanal','2200','2245','Turma 1 - Noite - SA');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','Santo André','Quinta-feira','Guilherme','105-0','Bloco A','Semanal','1845','1930','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Inglês/Sociologia','Santo André','Quinta-feira','Guilherme/Gustavo','105-0','Bloco A','Semanal','1930','2015','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia II','Santo André','Quinta-feira','Otávio','105-0','Bloco A','Semanal','2015','2100','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química - FQ','Santo André','Quinta-feira','Danilo','105-0','Bloco A','Semanal','2115','2200','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geografia política','Santo André','Quinta-feira','Alan','105-0','Bloco A','Semanal','2200','2245','Turma 1 - Noite - SA');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Filosofia','Santo André','Sexta-feira','Gabriel Valim','105-0','Bloco A','Semanal','1845','1930','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Física mecânica','Santo André','Sexta-feira','Danyela Lenz','105-0','Bloco A','Semanal','1930','2015','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geografia física','Santo André','Sexta-feira','Gabriel Carneiro','105-0','Bloco A','Semanal','2015','2100','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('PEM','Santo André','Sexta-feira','Eduardo','105-0','Bloco A','Semanal','2115','2200','Turma 1 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geometria I','Santo André','Sexta-feira','Gyslla','105-0','Bloco A','Semanal','2200','2245','Turma 1 - Noite - SA');");
+
+
+            //TURMA NOITE 2 SA
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Artes','Santo André','Segunda-feira','Nathália','206-0','Bloco A','Semanal','1845','1930','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Álgebra II','Santo André','Segunda-feira','Diego Medeiros','206-0','Bloco A','Semanal','1930','2015','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia III','Santo André','Segunda-feira','Carla','206-0','Bloco A','Semanal','2015','2100','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('História geral','Santo André','Segunda-feira','Clóvis','206-0','Bloco A','Semanal','2115','2200','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','Santo André','Segunda-feira','Anna Carla','206-0','Bloco A','Semanal','2200','2245','Turma 2 - Noite - SA');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('História do Brasil','Santo André','Terça-feira','Petrus','206-0','Bloco A','Semanal','1845','1930','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','Santo André','Terça-feira','Anna Carla','206-0','Bloco A','Semanal','1930','2015','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','Santo André','Terça-feira','Anna Carla','206-0','Bloco A','Semanal','2015','2100','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Física térmica/óptica','Santo André','Terça-feira','Carlos','206-0','Bloco A','Semanal','2115','2200','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química orgânica','Santo André','Terça-feira','Rodrigo','206-0','Bloco A','Semanal','2200','2245','Turma 2 - Noite - SA');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia I','Santo André','Quarta-feira','Bárbara','206-0','Bloco A','Semanal','1845','1930','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Álgebra I','Santo André','Quarta-feira','Thales','206-0','Bloco A','Semanal','1930','2015','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Literatura','Santo André','Quarta-feira','Tainara','206-0','Bloco A','Semanal','2015','2100','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Eletromagnetismo','Santo André','Quarta-feira','Renan','206-0','Bloco A','Semanal','2115','2200','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química inorgânica','Santo André','Quarta-feira','Paulo','206-0','Bloco A','Semanal','2200','2245','Turma 2 - Noite - SA');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia II','Santo André','Quinta-feira','Otávio','206-0','Bloco A','Semanal','1845','1930','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Inglês/Sociologia','Santo André','Quinta-feira','Guilherme/Gustavo','206-0','Bloco A','Semanal','1930','2015','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geometria II','Santo André','Quinta-feira','Glaúcia','206-0','Bloco A','Semanal','2015','2100','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geografia política','Santo André','Quinta-feira','Alan','206-0','Bloco A','Semanal','2115','2200','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química - FQ','Santo André','Quinta-feira','Danilo','206-0','Bloco A','Semanal','2200','2245','Turma 2 - Noite - SA');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Física mecânica','Santo André','Sexta-feira','Danyela Lenz','206-0','Bloco A','Semanal','1845','1930','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Filosofia','Santo André','Sexta-feira','Gabriel Valim','206-0','Bloco A','Semanal','1930','2015','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geometria I','Santo André','Sexta-feira','Gyslla','206-0','Bloco A','Semanal','2015','2100','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geografia física','Santo André','Sexta-feira','Gabriel Carneiro','206-0','Bloco A','Semanal','2115','2200','Turma 2 - Noite - SA');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('PEM','Santo André','Sexta-feira','Eduardo','206-0','Bloco A','Semanal','2200','2245','Turma 2 - Noite - SA');");
+
+            //TURMA 1 TARDE SBC
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Algebra II','São Bernardo','Segunda-feira','Lucas','A2-103','Bloco Alfa 2','Semanal','1330','1420','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('História geral','São Bernardo','Segunda-feira','Malu','A2-103','Bloco Alfa 2','Semanal','1420','1510','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geografia política','São Bernardo','Segunda-feira','Gustavo Lemos','A2-103','Bloco Alfa 2','Semanal','1510','1600','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geografia física','São Bernardo','Segunda-feira','Kamylle','A2-103','Bloco Alfa 2','Semanal','1620','1710','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','São Bernardo','Segunda-feira','Leonardo','A2-103','Bloco Alfa 2','Semanal','1710','1800','Turma 1 - Tarde - SBC');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química orgânica','São Bernardo','Terça-feira','Júlia','A2-103','Bloco Alfa 2','Semanal','1330','1420','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Álgebra I','São Bernardo','Terça-feira','Rodrigo Cosmo','A2-103','Bloco Alfa 2','Semanal','1420','1510','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química orgânica','São Bernardo','Terça-feira','Jadis','A2-103','Bloco Alfa 2','Semanal','1510','1600','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('História do Brasil','São Bernardo','Terça-feira','Helen','A2-103','Bloco Alfa 2','Semanal','1620','1710','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Eletromagnetismo','São Bernardo','Terça-feira','Marcelo','A2-103','Bloco Alfa 2','Semanal','1710','1800','Turma 1 - Tarde - SBC');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Filosofia','São Bernardo','Quarta-feira','Vinícius Pintor','A2-103','Bloco Alfa 2','Semanal','1330','1420','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','São Bernardo','Quarta-feira','Leonardo','A2-103','Bloco Alfa 2','Semanal','1420','1510','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','São Bernardo','Quarta-feira','Leonardo','A2-103','Bloco Alfa 2','Semanal','1510','1600','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia II','São Bernardo','Quarta-feira','Diego','A2-103','Bloco Alfa 2','Semanal','1620','1710','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Inglês/Sociologia','São Bernardo','Quarta-feira','Carol/Pintor','A2-103','Bloco Alfa 2','Semanal','1710','1800','Turma 1 - Tarde - SBC');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Literatura','São Bernardo','Quinta-feira','João','A2-103','Bloco Alfa 2','Semanal','1330','1420','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geometria II','São Bernardo','Quinta-feira','Luísa Basile','A2-103','Bloco Alfa 2','Semanal','1420','1510','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia III','São Bernardo','Quinta-feira','Vinícius','A2-103','Bloco Alfa 2','Semanal','1510','1600','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Física mecânica','São Bernardo','Quinta-feira','Daniel','A2-103','Bloco Alfa 2','Semanal','1620','1710','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geometria I','São Bernardo','Quinta-feira','Luísa Cristina','A2-103','Bloco Alfa 2','Semanal','1710','1800','Turma 1 - Tarde - SBC');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia I','São Bernardo','Sexta-feira','Matheus','A2-103','Bloco Alfa 2','Semanal','1330','1420','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química - FQ','São Bernardo','Sexta-feira','Bruno','A2-103','Bloco Alfa 2','Semanal','1420','1510','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Artes','São Bernardo','Sexta-feira','Letícia','A2-103','Bloco Alfa 2','Semanal','1510','1600','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Física térmica/óptica','São Bernardo','Sexta-feira','Wesley','A2-103','Bloco Alfa 2','Semanal','1620','1710','Turma 1 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('PEM','São Bernardo','Sexta-feira','Luísa Basile','A2-103','Bloco Alfa 2','Semanal','1710','1800','Turma 1 - Tarde - SBC');");
+
+
+            //TURMA 2 TARDE SBC
+            bd.execSQL("INSERT INTO todas_turmas VALUES('História geral','São Bernardo','Segunda-feira','Malu','Auditório','Bloco Beta','Semanal','1330','1420','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Álgebra II','São Bernardo','Segunda-feira','Lucas','Auditório','Bloco Beta','Semanal','1420','1510','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','São Bernardo','Segunda-feira','Lucas','Auditório','Bloco Beta','Semanal','1510','1600','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geografia política','São Bernardo','Segunda-feira','Gustavo Lemos','Auditório','Bloco Beta','Semanal','1620','1710','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geografia física','São Bernardo','Segunda-feira','Kamylle','Auditório','Bloco Beta','Semanal','1710','1800','Turma 2 - Tarde - SBC');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Álgebra I','São Bernardo','Terça-feira','Rodrigo Cosmo','Auditório','Bloco Beta','Semanal','1330','1420','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química orgânica','São Bernardo','Terça-feira','Jadis','Auditório','Bloco Beta','Semanal','1420','1510','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química inorgânica','São Bernardo','Terça-feira','Júlia','Auditório','Bloco Beta','Semanal','1510','1600','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Eletromagnetismo','São Bernardo','Terça-feira','Marcelo','Auditório','Bloco Beta','Semanal','1620','1710','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('História do Brasil','São Bernardo','Terça-feira','Helen','Auditório','Bloco Beta','Semanal','1710','1800','Turma 2 - Tarde - SBC');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geometria I','São Bernardo','Quarta-feira','Luísa Cristina','Auditório','Bloco Beta','Semanal','1330','1420','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Filosofia','São Bernardo','Quarta-feira','Vinícius Pintor','Auditório','Bloco Beta','Semanal','1420','1510','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia II','São Bernardo','Quarta-feira','Diego','Auditório','Bloco Beta','Semanal','1510','1600','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia I','São Bernardo','Quarta-feira','Matheus','Auditório','Bloco Beta','Semanal','1620','1710','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Inglês/Sociologia','São Bernardo','Quarta-feira','Carol/Pintor','Auditório','Bloco Beta','Semanal','1710','1800','Turma 2 - Tarde - SBC');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geometria II','São Bernardo','Quinta-feira','Luísa Basile','Auditório','Bloco Beta','Semanal','1330','1420','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Literatura','São Bernardo','Quinta-feira','João','Auditório','Bloco Beta','Semanal','1420','1510','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Física mecânica','São Bernardo','Quinta-feira','Daniel','Auditório','Bloco Beta','Semanal','1510','1600','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia III','São Bernardo','Quinta-feira','Vinícius','Auditório','Bloco Beta','Semanal','1620','1710','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Artes','São Bernardo','Quinta-feira','Letícia','Auditório','Bloco Beta','Semanal','1710','1800','Turma 2 - Tarde - SBC');");
+
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química - FQ','São Bernardo','Sexta-feira','Bruno','Auditório','Bloco Beta','Semanal','1330','1420','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','São Bernardo','Sexta-feira','Lucas','Auditório','Bloco Beta','Semanal','1420','1510','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','São Bernardo','Sexta-feira','Lucas','Auditório','Bloco Beta','Semanal','1510','1600','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('PEM','São Bernardo','Sexta-feira','Luísa Basile','Auditório','Bloco Beta','Semanal','1620','1710','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Física térmica/óptica','São Bernardo','Sexta-feira','Wesley','Auditório','Bloco Beta','Semanal','1710','1800','Turma 2 - Tarde - SBC');");
+
         }
     }
 
@@ -996,9 +1158,9 @@ public class MainActivity extends AppCompatActivity
         gerencia_aula = bd.rawQuery("SELECT * FROM aulas ORDER BY hora_inicio ASC", null);
         if (gerencia_aula.getCount() == 0) {
             nome_aula.setText("");
-            hora_aula.setText("Você não adicionou nenhuma aula.");
-            nome_prof.setText("Adicione aulas");
-            local_aula.setText("para que possamos te ajudar.");
+            hora_aula.setText("Suas aulas ainda não foram adicionadas.");
+            nome_prof.setText("Informe sua turma");
+            local_aula.setText("para que possamos adicionar suas aulas.");
             avancar_aula.setAlpha(0.2f);
             voltar_aula.setAlpha(0.2f);
         } else {
@@ -1135,6 +1297,7 @@ public class MainActivity extends AppCompatActivity
     public void abrir_grade(View view) {
         Intent intent = new Intent(this, aulas.class);
         startActivity(intent);
+        finish();
     }
 
 }

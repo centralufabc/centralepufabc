@@ -73,6 +73,14 @@
         <activity
             android:name=".bugs"
             android:label="@string/title_activity_bugs"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".calculadora"
+            android:label="@string/title_activity_calculadora"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".add_aulas"
+            android:label="@string/title_activity_add_aulas"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
