@@ -393,7 +393,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, calculadora.class);
             startActivity(intent);
         } else if (id == R.id.nav_monitoria) {
-
+            Intent intent = new Intent(this, monitoria.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -832,6 +833,7 @@ public class MainActivity extends AppCompatActivity
             bd.execSQL("INSERT INTO todas_turmas VALUES('PEM','São Bernardo','Sexta-feira','Luísa Basile','Auditório','Bloco Beta','Semanal','1620','1710','Turma 2 - Tarde - SBC');");
             bd.execSQL("INSERT INTO todas_turmas VALUES('Física térmica/óptica','São Bernardo','Sexta-feira','Wesley','Auditório','Bloco Beta','Semanal','1710','1800','Turma 2 - Tarde - SBC');");
 
+            bd.execSQL("CREATE TABLE IF NOT EXISTS monitoria (nome text not null,detalhes text not null);");
         }
     }
 

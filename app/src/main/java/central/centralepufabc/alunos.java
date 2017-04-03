@@ -28,16 +28,11 @@ public class alunos extends AppCompatActivity {
     }
 
     private void carregar_lista(){
-        arrayAreas.add(new Aluno("Djanary Falkenstein. Engenharia de (?), UFABC","Todos os ex-alunos abaixo estão dispostos a tirar dúvidas sobre vestibular, universidade, curso e afins. Para entrar em contato, basta tocar no nome do ex-aluno desejado.",R.drawable.dj));
-        arrayAreas.add(new Aluno("Apesar das excelentes aulas de desenvolvimento textual que tive na EP, não consigo desenvolver uma frase descente pra colocar aqui","Djanary Falkenstein. Engenharia de (?), UFABC",R.drawable.dj));
-        arrayAreas.add(new Aluno("Um projeto incrível que me deu a possibilidade de entrar no ensino superior. Sou o 1º da minha família a entrar em uma universidade federal","Kleverson Nascimento. Ciência da computação, UFABC",R.drawable.kleverson_nascimento));
-        arrayAreas.add(new Aluno("Apesar das excelentes aulas de desenvolvimento textual que tive na EP, não consigo desenvolver uma frase descente pra colocar aqui","Djanary Falkenstein. Engenharia de (?), UFABC",R.drawable.dj));
-        arrayAreas.add(new Aluno("Um projeto incrível que me deu a possibilidade de entrar no ensino superior. Sou o 1º da minha família a entrar em uma universidade federal","Kleverson Nascimento. Ciência da computação, UFABC",R.drawable.kleverson_nascimento));
-        arrayAreas.add(new Aluno("Apesar das excelentes aulas de desenvolvimento textual que tive na EP, não consigo desenvolver uma frase descente pra colocar aqui","Djanary Falkenstein. Engenharia de (?), UFABC",R.drawable.dj));
-        arrayAreas.add(new Aluno("Um projeto incrível que me deu a possibilidade de entrar no ensino superior. Sou o 1º da minha família a entrar em uma universidade federal","Kleverson Nascimento. Ciência da computação, UFABC",R.drawable.kleverson_nascimento));
-        arrayAreas.add(new Aluno("Apesar das excelentes aulas de desenvolvimento textual que tive na EP, não consigo desenvolver uma frase descente pra colocar aqui","Djanary Falkenstein. Engenharia de (?), UFABC",R.drawable.dj));
-        arrayAreas.add(new Aluno("Um projeto incrível que me deu a possibilidade de entrar no ensino superior. Sou o 1º da minha família a entrar em uma universidade federal","Kleverson Nascimento. Ciência da computação, UFABC",R.drawable.kleverson_nascimento));
-
+        arrayAreas.add(new Aluno("Nome do aluno. Engenharia de (?), UFABC","Todos os ex-alunos abaixo estão dispostos a tirar dúvidas sobre vestibular, universidade, curso e afins. Para entrar em contato, basta tocar no nome do ex-aluno desejado.",R.drawable.dj));
+        arrayAreas.add(new Aluno("Este espaço é destinado para que você possa contar como foi sua experiência no cursinho, como está sendo na universidade, o que a EP representa pra você, enfim, qualquer coisa que você queira dizer, desde um textão até um simples 'A EPUFABC é top!'","Nome do(a) aluno(a). Curso que faz, Universidade que estuda",R.drawable.padrao));
+        arrayAreas.add(new Aluno("Este espaço é destinado para que você possa contar como foi sua experiência no cursinho, como está sendo na universidade, o que a EP representa pra você, enfim, qualquer coisa que você queira dizer, desde um textão até um simples 'A EPUFABC é top!'","Nome do(a) aluno(a). Curso que faz, Universidade que estuda",R.drawable.padrao));
+        arrayAreas.add(new Aluno("Este espaço é destinado para que você possa contar como foi sua experiência no cursinho, como está sendo na universidade, o que a EP representa pra você, enfim, qualquer coisa que você queira dizer, desde um textão até um simples 'A EPUFABC é top!'","Nome do(a) aluno(a). Curso que faz, Universidade que estuda",R.drawable.padrao));
+        arrayAreas.add(new Aluno("Este espaço é destinado para que você possa contar como foi sua experiência no cursinho, como está sendo na universidade, o que a EP representa pra você, enfim, qualquer coisa que você queira dizer, desde um textão até um simples 'A EPUFABC é top!'","Nome do(a) aluno(a). Curso que faz, Universidade que estuda",R.drawable.padrao));
 
 
 

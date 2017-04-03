@@ -81,6 +81,22 @@
         <activity
             android:name=".add_aulas"
             android:label="@string/title_activity_add_aulas"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".monitoria"
+            android:label="@string/title_activity_monitoria"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".add_monitoria"
+            android:label="@string/title_activity_add_monitoria"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".edita_monitoria"
+            android:label="@string/title_activity_edita_monitoria"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".excluir_monitoria"
+            android:label="@string/title_activity_excluir_monitoria"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -24,5 +24,9 @@
 
     <string name="calcular">Calcular</string>
     <string name="title_activity_add_aulas">add_aulas</string>
+    <string name="title_activity_monitoria">monitoria</string>
+    <string name="title_activity_add_monitoria">add_monitoria</string>
+    <string name="title_activity_edita_monitoria">edita_monitoria</string>
+    <string name="title_activity_excluir_monitoria">excluir_monitoria</string>
 
 </resources>
