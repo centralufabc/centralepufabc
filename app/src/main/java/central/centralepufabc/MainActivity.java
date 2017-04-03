@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity
         calendar = Calendar.getInstance(TimeZone.getTimeZone("Brazil/East"));//configurar calendário
 
         dia=calendar.get(Calendar.DAY_OF_WEEK);
-        //ra();
+        rar();
         preencher_aulinhas();
 
 
@@ -1330,6 +1330,21 @@ public class MainActivity extends AppCompatActivity
     public void abrir_grade(View view) {
         Intent intent = new Intent(this, aulas.class);
         startActivity(intent);
+        finish();
+    }
+
+    public void rar(){
+        TextView r;
+        r=(TextView) findViewById(R.id.txt_rar);
+        cursor= bd.rawQuery("SELECT numero FROM ra", null);
+        cursor.moveToLast();
+        r.setText("Meu RA: "+cursor.getString(0));
+
+    }
+
+    public void edita_rar(View view){
+        Intent it=new Intent(this, ra.class);
+        startActivity(it);
         finish();
     }
 

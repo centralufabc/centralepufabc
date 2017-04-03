@@ -97,6 +97,10 @@
         <activity
             android:name=".excluir_monitoria"
             android:label="@string/title_activity_excluir_monitoria"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ra"
+            android:label="@string/title_activity_ra"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
