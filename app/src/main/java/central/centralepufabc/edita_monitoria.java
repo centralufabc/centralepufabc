@@ -9,6 +9,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -89,9 +91,34 @@ public class edita_monitoria extends AppCompatActivity {
         finish();
     }
 
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) < 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            Log.d("CDA", "onKeyDown Called");
+            onBackPressed();
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void onBackPressed() {
+        Intent it=new Intent(this, monitoria.class);
+        startActivity(it);
+        finish();
+    }
+
     public void editar(View view){
         if(nome.getText().toString().equals("") || detalhes.getText().toString().equals("") || nome.getVisibility()==View.GONE || detalhes.getVisibility()==View.GONE){
-
+            if(nome.getText().toString().equals("")) {
+                nome.requestFocus();
+                Toast.makeText(this,"Insira o nome da matéria",Toast.LENGTH_SHORT).show();
+            } else if(detalhes.getText().toString().equals("")){
+                detalhes.requestFocus();
+                Toast.makeText(this,"Insira detalhes da matéria",Toast.LENGTH_SHORT).show();
+            } else{
+                Toast.makeText(this,"Selecione uma matéria valida",Toast.LENGTH_SHORT).show();
+            }
         } else{
             bd.execSQL("DELETE FROM monitoria WHERE nome='"+monitorias.getSelectedItem().toString()+"'");
             bd.execSQL("INSERT INTO monitoria VALUES('"+nome.getText().toString()+"','"+detalhes.getText().toString()+"');");

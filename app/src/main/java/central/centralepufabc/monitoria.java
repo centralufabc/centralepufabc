@@ -66,4 +66,10 @@ public class monitoria extends AppCompatActivity {
         startActivity(it);
         finish();
     }
+
+    public void excluir_mon(View view){
+        Intent it=new Intent(this, excluir_monitoria.class);
+        startActivity(it);
+        finish();
+    }
 }

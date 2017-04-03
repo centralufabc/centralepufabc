@@ -39,5 +39,31 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="16dp" />
 
+    <Button
+        android:text="Excluir"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/button"
+        android:onClick="excluir"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        style="@style/Widget.AppCompat.Button.Colored" />
+
+    <Button
+        android:text="Cancelar"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/button2"
+        android:onClick="vraw"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        style="@style/Widget.AppCompat.Button.Colored" />
+
 
 </android.support.constraint.ConstraintLayout>

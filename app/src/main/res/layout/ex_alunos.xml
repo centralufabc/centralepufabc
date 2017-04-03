@@ -61,6 +61,7 @@
                 android:textColor="#ffffff"
                 android:fontFamily="sans-serif-condensed"
                 android:layout_height="wrap_content"
+                android:onClick="captura"
                 android:id="@+id/txt_curso"
                 android:layout_marginStart="16dp"
                 app:layout_constraintLeft_toRightOf="@+id/img_aluno"

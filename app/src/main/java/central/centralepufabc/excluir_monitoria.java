@@ -9,6 +9,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -66,7 +68,24 @@ public class excluir_monitoria extends AppCompatActivity {
         }
     }
 
-    public void voltar(View view){
+    public void vraw(View view){
+        Intent it=new Intent(this, monitoria.class);
+        startActivity(it);
+        finish();
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) < 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            Log.d("CDA", "onKeyDown Called");
+            onBackPressed();
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void onBackPressed() {
         Intent it=new Intent(this, monitoria.class);
         startActivity(it);
         finish();

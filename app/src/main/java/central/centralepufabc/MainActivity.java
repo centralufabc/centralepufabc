@@ -24,11 +24,14 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.TimeZone;
+
+import static android.content.Context.ALARM_SERVICE;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -97,8 +100,9 @@ public class MainActivity extends AppCompatActivity
         calendar = Calendar.getInstance(TimeZone.getTimeZone("Brazil/East"));//configurar calendário
 
         dia=calendar.get(Calendar.DAY_OF_WEEK);
-
+        //ra();
         preencher_aulinhas();
+
 
         inv="";
         cursor = bd.rawQuery("SELECT * FROM local_salvo ORDER BY indice ASC", null);
@@ -803,37 +807,64 @@ public class MainActivity extends AppCompatActivity
 
 
             //TURMA 2 TARDE SBC
-            bd.execSQL("INSERT INTO todas_turmas VALUES('História geral','São Bernardo','Segunda-feira','Malu','Auditório','Bloco Beta','Semanal','1330','1420','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Álgebra II','São Bernardo','Segunda-feira','Lucas','Auditório','Bloco Beta','Semanal','1420','1510','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','São Bernardo','Segunda-feira','Lucas','Auditório','Bloco Beta','Semanal','1510','1600','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Geografia política','São Bernardo','Segunda-feira','Gustavo Lemos','Auditório','Bloco Beta','Semanal','1620','1710','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Geografia física','São Bernardo','Segunda-feira','Kamylle','Auditório','Bloco Beta','Semanal','1710','1800','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('História geral','São Bernardo','Segunda-feira','Malu','A2-105','Bloco Alfa 2','Semanal','1330','1420','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Álgebra II','São Bernardo','Segunda-feira','Lucas','A2-105','Bloco Alfa 2','Semanal','1420','1510','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','São Bernardo','Segunda-feira','Lucas','A2-105','Bloco Alfa 2','Semanal','1510','1600','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geografia política','São Bernardo','Segunda-feira','Gustavo Lemos','A2-105','Bloco Alfa 2','Semanal','1620','1710','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geografia física','São Bernardo','Segunda-feira','Kamylle','A2-105','Bloco Alfa 2','Semanal','1710','1800','Turma 2 - Tarde - SBC');");
 
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Álgebra I','São Bernardo','Terça-feira','Rodrigo Cosmo','Auditório','Bloco Beta','Semanal','1330','1420','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Química orgânica','São Bernardo','Terça-feira','Jadis','Auditório','Bloco Beta','Semanal','1420','1510','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Química inorgânica','São Bernardo','Terça-feira','Júlia','Auditório','Bloco Beta','Semanal','1510','1600','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Eletromagnetismo','São Bernardo','Terça-feira','Marcelo','Auditório','Bloco Beta','Semanal','1620','1710','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('História do Brasil','São Bernardo','Terça-feira','Helen','Auditório','Bloco Beta','Semanal','1710','1800','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Álgebra I','São Bernardo','Terça-feira','Rodrigo Cosmo','A2-105','Bloco Alfa 2','Semanal','1330','1420','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química orgânica','São Bernardo','Terça-feira','Jadis','A2-105','Bloco Alfa 2','Semanal','1420','1510','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química inorgânica','São Bernardo','Terça-feira','Júlia','A2-105','Bloco Alfa 2','Semanal','1510','1600','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Eletromagnetismo','São Bernardo','Terça-feira','Marcelo','A2-105','Bloco Alfa 2','Semanal','1620','1710','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('História do Brasil','São Bernardo','Terça-feira','Helen','A2-105','Bloco Alfa 2','Semanal','1710','1800','Turma 2 - Tarde - SBC');");
 
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Geometria I','São Bernardo','Quarta-feira','Luísa Cristina','Auditório','Bloco Beta','Semanal','1330','1420','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Filosofia','São Bernardo','Quarta-feira','Vinícius Pintor','Auditório','Bloco Beta','Semanal','1420','1510','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia II','São Bernardo','Quarta-feira','Diego','Auditório','Bloco Beta','Semanal','1510','1600','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia I','São Bernardo','Quarta-feira','Matheus','Auditório','Bloco Beta','Semanal','1620','1710','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Inglês/Sociologia','São Bernardo','Quarta-feira','Carol/Pintor','Auditório','Bloco Beta','Semanal','1710','1800','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geometria I','São Bernardo','Quarta-feira','Luísa Cristina','A2-105','Bloco Alfa 2','Semanal','1330','1420','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Filosofia','São Bernardo','Quarta-feira','Vinícius Pintor','A2-105','Bloco Alfa 2','Semanal','1420','1510','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia II','São Bernardo','Quarta-feira','Diego','A2-105','Bloco Alfa 2','Semanal','1510','1600','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia I','São Bernardo','Quarta-feira','Matheus','A2-105','Bloco Alfa 2','Semanal','1620','1710','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Inglês/Sociologia','São Bernardo','Quarta-feira','Carol/Pintor','A2-105','Bloco Alfa 2','Semanal','1710','1800','Turma 2 - Tarde - SBC');");
 
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Geometria II','São Bernardo','Quinta-feira','Luísa Basile','Auditório','Bloco Beta','Semanal','1330','1420','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Literatura','São Bernardo','Quinta-feira','João','Auditório','Bloco Beta','Semanal','1420','1510','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Física mecânica','São Bernardo','Quinta-feira','Daniel','Auditório','Bloco Beta','Semanal','1510','1600','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia III','São Bernardo','Quinta-feira','Vinícius','Auditório','Bloco Beta','Semanal','1620','1710','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Artes','São Bernardo','Quinta-feira','Letícia','Auditório','Bloco Beta','Semanal','1710','1800','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Geometria II','São Bernardo','Quinta-feira','Luísa Basile','A2-105','Bloco Alfa 2','Semanal','1330','1420','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Literatura','São Bernardo','Quinta-feira','João','A2-105','Bloco Alfa 2','Semanal','1420','1510','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Física mecânica','São Bernardo','Quinta-feira','Daniel','A2-105','Bloco Alfa 2','Semanal','1510','1600','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Biologia III','São Bernardo','Quinta-feira','Vinícius','A2-105','Bloco Alfa 2','Semanal','1620','1710','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Artes','São Bernardo','Quinta-feira','Letícia','A2-105','Bloco Alfa 2','Semanal','1710','1800','Turma 2 - Tarde - SBC');");
 
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Química - FQ','São Bernardo','Sexta-feira','Bruno','Auditório','Bloco Beta','Semanal','1330','1420','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','São Bernardo','Sexta-feira','Lucas','Auditório','Bloco Beta','Semanal','1420','1510','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','São Bernardo','Sexta-feira','Lucas','Auditório','Bloco Beta','Semanal','1510','1600','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('PEM','São Bernardo','Sexta-feira','Luísa Basile','Auditório','Bloco Beta','Semanal','1620','1710','Turma 2 - Tarde - SBC');");
-            bd.execSQL("INSERT INTO todas_turmas VALUES('Física térmica/óptica','São Bernardo','Sexta-feira','Wesley','Auditório','Bloco Beta','Semanal','1710','1800','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Química - FQ','São Bernardo','Sexta-feira','Bruno','A2-105','Bloco Alfa 2','Semanal','1330','1420','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','São Bernardo','Sexta-feira','Lucas','A2-105','Bloco Alfa 2','Semanal','1420','1510','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Redação','São Bernardo','Sexta-feira','Lucas','A2-105','Bloco Alfa 2','Semanal','1510','1600','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('PEM','São Bernardo','Sexta-feira','Luísa Basile','A2-105','Bloco Alfa 2','Semanal','1620','1710','Turma 2 - Tarde - SBC');");
+            bd.execSQL("INSERT INTO todas_turmas VALUES('Física térmica/óptica','São Bernardo','Sexta-feira','Wesley','A2-105','Bloco Alfa 2','Semanal','1710','1800','Turma 2 - Tarde - SBC');");
+
+
+            bd.execSQL("CREATE TABLE IF NOT EXISTS ra (numero text);");
+            bd.execSQL("INSERT INTO ra VALUES('XX2017XXXXX');");
+
 
             bd.execSQL("CREATE TABLE IF NOT EXISTS monitoria (nome text not null,detalhes text not null);");
+
+            bd.execSQL("CREATE TABLE IF NOT EXISTS alunos (nome text not null,email text not null);");
+            bd.execSQL("INSERT INTO alunos VALUES('Bianca Pintol Leite. Medicina Veterinária, Metodista','bianca_leite2008@hotmail.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Renata Vital. Arquitetura e Urbanismo, Uninove','renata.vital@live.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Nayra. Engenharia Civil, Metodista','nayra.martins08@gmail.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Rafael Correia. BC&T, UFABC','rafael_correia41@hotmail.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Léo Cardoso. Ciências Contábeis, Esags Fgv','leocardosox@outlook.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Jonathan Fátimo. Farmácia, Unifesp','Jonathanfatimo@outlook.com.br');");
+            bd.execSQL("INSERT INTO alunos VALUES('Kelly Maiara. Pedagogia, UEMG','kellymaiara0@gmail.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Yuri. BC&T, UFABC','yuri.pimentel2007@gmail.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Lubs Cristina. Arquitetura e Urbanismo, IFSP','luany.cristina@gmail.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Filipe Marques. Engenharia cívil, Anhembi morumbi','filipemarques193@hotmail.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Giovanna Nolli. Relações Internacionais, UFABC','giovannanollisantos@gmail.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Bruna Gabriela. BC&H, UFABC','Bruuna.g135@gmail.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Aline Murari. Licenciatura Plena em Geografia, Faculdade Sumaré','alinesmurari@hotmail.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Wemerson Silva. Psicologia, Mackenzie','wemerson.fsilva98@gmail.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Francine Oras. Engenharia agronômica, UNESP','francine.souza1008@gmail.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Talissa Taglietti. Enfermagem, Universidade São Judas Tadeu','talissataglietti@gmail.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Você. Curso que você quer, universidade que você quer','seuemail@gmail.com');");
+            //bd.execSQL("INSERT INTO alunos VALUES('','');");
+
+
         }
     }
 
@@ -1301,5 +1332,7 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
         finish();
     }
+
+
 
 }

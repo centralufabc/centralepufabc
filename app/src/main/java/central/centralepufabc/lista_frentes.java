@@ -2,6 +2,7 @@ package central.centralepufabc;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -67,7 +68,7 @@ public class lista_frentes extends AppCompatActivity {
         um.add("Física - Mecânica");
         um.add("Física - Termologia");
         um.add("Física - Eletromagnetismo");
-            listHash.put(listDataHeader.get(0),um);
+        listHash.put(listDataHeader.get(0),um);
 
         dois.add("História - História do Brasil");
         dois.add("História - História geral");
@@ -75,26 +76,36 @@ public class lista_frentes extends AppCompatActivity {
         dois.add("Geografia - Geopolítica");
         dois.add("Sociologia");
         dois.add("Filosofia");
-            listHash.put(listDataHeader.get(1),dois);
+        listHash.put(listDataHeader.get(1),dois);
         tres.add("História da arte");
         tres.add("Inglês");
         tres.add("Literatura");
-            listHash.put(listDataHeader.get(2),tres);
+        listHash.put(listDataHeader.get(2),tres);
         quatro.add("Álgebra I");
         quatro.add("Álgebra II");
         quatro.add("Geometria I");
         quatro.add("Geometria II");
         quatro.add("Aula de exercícios");
-            listHash.put(listDataHeader.get(3),quatro);
+        listHash.put(listDataHeader.get(3),quatro);
         cinco.add("Grámatica");
         cinco.add("Redação");
-            listHash.put(listDataHeader.get(4),cinco);
+        listHash.put(listDataHeader.get(4),cinco);
 
 
-        }
+    }
 
     public void abrir_edmodo(View view){
+        PackageManager pm = getPackageManager();
+        try {
+            Intent intent = pm.getLaunchIntentForPackage("com.fusionprojects.edmodo.apk");
+            startActivity(intent);
 
+        } catch (Exception ex){
+            Intent myWebLink = new Intent(android.content.Intent.ACTION_VIEW);
+            myWebLink.setData(Uri.parse("http://edmodo.com"));
+            startActivity(myWebLink);
+
+        }
     }
 
 

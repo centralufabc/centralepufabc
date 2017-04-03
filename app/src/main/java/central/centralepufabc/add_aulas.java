@@ -10,6 +10,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -50,7 +52,7 @@ public class add_aulas extends AppCompatActivity {
     public void adicionar(View view){
         if(!t.getSelectedItem().toString().equals("Selecione uma turma")) {
             cursor = bd.rawQuery("SELECT nome_materia,campus,dia,nome_prof,sala,bloco,frequencia,hora_inicio,hora_fim FROM todas_turmas WHERE turma='"+t.getSelectedItem().toString()+"'ORDER BY nome_materia ASC", null);
-             cursor.moveToFirst();
+            cursor.moveToFirst();
             while(!cursor.isLast()){
                 bd.execSQL("INSERT INTO aulas VALUES('"+cursor.getString(0)+"','"+cursor.getString(1)+"','"+cursor.getString(2)+"','"+cursor.getString(3)+"','"+cursor.getString(4)+"','"+cursor.getString(5)+"','"+cursor.getString(6)+"','"+cursor.getInt(7)+"','"+cursor.getString(8)+"');");
                 cursor.moveToNext();
@@ -78,9 +80,25 @@ public class add_aulas extends AppCompatActivity {
     }
 
     public void voltar(View view) {
-        Intent it=new Intent(this, MainActivity.class);
+        Intent it=new Intent(this, aulas.class);
         startActivity(it);
         finish();
     }
 
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) < 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            Log.d("CDA", "onKeyDown Called");
+            onBackPressed();
+        }
+
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void onBackPressed() {
+        Intent it=new Intent(this, aulas.class);
+        startActivity(it);
+        finish();
+    }
 }
