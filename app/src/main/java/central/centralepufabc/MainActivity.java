@@ -383,7 +383,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, sobre.class);
             startActivity(intent);
         } else if (id == R.id.nav_hi) {
-
+            Intent intent = new Intent(this, tutorial.class);
+            startActivity(intent);
         } else if (id == R.id.nav_cronograma) {
             Intent intent = new Intent(this, lista_frentes.class);
             startActivity(intent);
@@ -417,8 +418,8 @@ public class MainActivity extends AppCompatActivity
 
         if (cursor.getCount() == 0) {
 
-            //Intent intent = new Intent(this, Tutorial.class);
-            //startActivity(intent);
+            Intent intent = new Intent(this, tutorial.class);
+            startActivity(intent);
 
             //LINHAS 1, 2 E EXPRESSO QUE VÃO DE SA PRA LESTE
             //LINHA 1

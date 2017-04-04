@@ -105,6 +105,10 @@
         <activity
             android:name=".ondecomer"
             android:label="@string/title_activity_ondecomer"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".tutorial"
+            android:label="@string/title_activity_tutorial"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
