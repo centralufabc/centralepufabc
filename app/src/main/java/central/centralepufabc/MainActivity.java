@@ -839,7 +839,7 @@ public class MainActivity extends AppCompatActivity
 
 
             bd.execSQL("CREATE TABLE IF NOT EXISTS ra (numero text);");
-            bd.execSQL("INSERT INTO ra VALUES('XX2017XXXXX');");
+            bd.execSQL("INSERT INTO ra VALUES('00201700000');");
 
 
             bd.execSQL("CREATE TABLE IF NOT EXISTS monitoria (nome text not null,detalhes text not null);");
@@ -862,7 +862,27 @@ public class MainActivity extends AppCompatActivity
             bd.execSQL("INSERT INTO alunos VALUES('Francine Oras. Engenharia agronômica, UNESP','francine.souza1008@gmail.com');");
             bd.execSQL("INSERT INTO alunos VALUES('Talissa Taglietti. Enfermagem, Universidade São Judas Tadeu','talissataglietti@gmail.com');");
             bd.execSQL("INSERT INTO alunos VALUES('Você. Curso que você quer, universidade que você quer','seuemail@gmail.com');");
+
+            bd.execSQL("INSERT INTO alunos VALUES('Caique Santos. Engenharia de Materiais, UFCG','Caique.js13@hotmail.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Jow. Medicina veterinária, USP Pirassununga','juelisonmoura@gmail.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Vitória Bárbara. BC&T, UFABC','vitoriabarbaralima@gmail.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Jaqueline Pereira. Direito, UNIP','jaque_pereira_lk@icloud.com');");
+            bd.execSQL("INSERT INTO alunos VALUES('Kleverson Nascimento. BC&T, UFABC','nascimentokleverson@gmail.com');");
             //bd.execSQL("INSERT INTO alunos VALUES('','');");
+
+            bd.execSQL("CREATE TABLE IF NOT EXISTS gifs (nome text not null,url text not null);");
+            bd.execSQL("INSERT INTO gifs VALUES('Pug brincalhão','https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr06/2013/5/31/10/anigif_enhanced-buzz-3662-1370010446-11.gif?downsize=715:*&output-format=auto&output-quality=auto');");
+            bd.execSQL("INSERT INTO gifs VALUES('','');");
+            bd.execSQL("INSERT INTO gifs VALUES('','');");
+            bd.execSQL("INSERT INTO gifs VALUES('','');");
+            bd.execSQL("INSERT INTO gifs VALUES('','');");
+            bd.execSQL("INSERT INTO gifs VALUES('','');");
+            bd.execSQL("INSERT INTO gifs VALUES('','');");
+            bd.execSQL("INSERT INTO gifs VALUES('','');");
+            bd.execSQL("INSERT INTO gifs VALUES('','');");
+            bd.execSQL("INSERT INTO gifs VALUES('','');");
+            bd.execSQL("INSERT INTO gifs VALUES('','');");
+            bd.execSQL("INSERT INTO gifs VALUES('','');");
 
 
         }
