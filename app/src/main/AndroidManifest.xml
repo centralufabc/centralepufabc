@@ -101,6 +101,10 @@
         <activity
             android:name=".ra"
             android:label="@string/title_activity_ra"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ondecomer"
+            android:label="@string/title_activity_ondecomer"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -29,5 +29,6 @@
     <string name="title_activity_edita_monitoria">edita_monitoria</string>
     <string name="title_activity_excluir_monitoria">excluir_monitoria</string>
     <string name="title_activity_ra">ra</string>
+    <string name="title_activity_ondecomer">ondecomer</string>
 
 </resources>

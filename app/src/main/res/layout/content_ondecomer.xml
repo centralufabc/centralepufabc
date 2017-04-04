@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_ondecomer"
+    android:layout_width="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="central.centralepufabc.ondecomer"
+    tools:showIn="@layout/activity_ondecomer"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="NÃO COMA NO RU SE TIVER PEIXE!"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_o_ru"
+        android:textSize="24sp"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="#000000"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/txt_o_1"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp" />
+
+    <TextView
+        android:text="Infelizmente nossa central de inteligência não conseguiu pesquisar todos os locais próximos dos dois campus a tempo de adicionarmos no app, em breve uma atualização será lançada com esse recurso implementado, mas podemos dizer desde já que:"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="#0d593b"
+        android:id="@+id/txt_o_1"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp" />
+
+    <TextView
+        android:text="Mas...o que é RU? Restaurante universitário da universidade, funciona no almoço das 11h às 14h e no jantar das 17h30 às 19h30 de segunda à sexta, aos sábados só funciona no almoço, atualmente o valor para vocês é de R$11,62, você pode consultar o cardápio dessa semana tocando no botão abaixo."
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_o_2"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif-condensed"
+        android:textColor="#0d593b"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/txt_o_ru"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp" />
+
+    <Button
+        android:text="TOQUE PARA VER O CARDÁPIO DO RU"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="446dp"
+        android:id="@+id/bt_ru"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:onClick="abre_ru"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        style="@style/Widget.AppCompat.Button.Colored" />
+
+
+</android.support.constraint.ConstraintLayout>

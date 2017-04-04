@@ -371,7 +371,8 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, Calendario.class);
             startActivity(intent);
         } else if (id == R.id.nav_ru) {
-
+            Intent intent = new Intent(this, ondecomer.class);
+            startActivity(intent);
         } else if (id == R.id.nav_contador) {
             Intent intent = new Intent(this, contador.class);
             startActivity(intent);
