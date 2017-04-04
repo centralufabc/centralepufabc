@@ -53,6 +53,7 @@ public class Gif_adapater extends BaseAdapter {
             TextView txt2 = (TextView) v.findViewById(R.id.txt_nome_gif);
 
             txt2.setText(arrayList.get(i).getNome_gif());
+            txt2.setTag(arrayList.get(i).getTag_gif());
             return v;
         }
     }

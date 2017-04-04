@@ -870,20 +870,6 @@ public class MainActivity extends AppCompatActivity
             bd.execSQL("INSERT INTO alunos VALUES('Kleverson Nascimento. BC&T, UFABC','nascimentokleverson@gmail.com');");
             //bd.execSQL("INSERT INTO alunos VALUES('','');");
 
-            bd.execSQL("CREATE TABLE IF NOT EXISTS gifs (nome text not null,url text not null);");
-            bd.execSQL("INSERT INTO gifs VALUES('Pug brincalhão','https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr06/2013/5/31/10/anigif_enhanced-buzz-3662-1370010446-11.gif?downsize=715:*&output-format=auto&output-quality=auto');");
-            bd.execSQL("INSERT INTO gifs VALUES('','');");
-            bd.execSQL("INSERT INTO gifs VALUES('','');");
-            bd.execSQL("INSERT INTO gifs VALUES('','');");
-            bd.execSQL("INSERT INTO gifs VALUES('','');");
-            bd.execSQL("INSERT INTO gifs VALUES('','');");
-            bd.execSQL("INSERT INTO gifs VALUES('','');");
-            bd.execSQL("INSERT INTO gifs VALUES('','');");
-            bd.execSQL("INSERT INTO gifs VALUES('','');");
-            bd.execSQL("INSERT INTO gifs VALUES('','');");
-            bd.execSQL("INSERT INTO gifs VALUES('','');");
-            bd.execSQL("INSERT INTO gifs VALUES('','');");
-
 
         }
     }
