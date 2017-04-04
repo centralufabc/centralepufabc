@@ -8,7 +8,7 @@
     <ImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:srcCompat="@drawable/brunogumieri"
+        app:srcCompat="@drawable/welcome"
         android:id="@+id/imageView_1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
