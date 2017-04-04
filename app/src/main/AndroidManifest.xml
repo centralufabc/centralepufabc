@@ -49,66 +49,82 @@
         <activity
             android:name=".lista_frentes"
             android:label="@string/title_activity_lista_frentes"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".alunos"
             android:label="@string/title_activity_alunos"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".equipe"
             android:label="@string/title_activity_equipe"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Calendario"
             android:label="@string/title_activity_calendario"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".contador"
             android:label="@string/title_activity_contador"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".sobre"
             android:label="@string/title_activity_sobre"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".bugs"
             android:label="@string/title_activity_bugs"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".calculadora"
             android:label="@string/title_activity_calculadora"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".add_aulas"
             android:label="@string/title_activity_add_aulas"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".monitoria"
             android:label="@string/title_activity_monitoria"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".add_monitoria"
             android:label="@string/title_activity_add_monitoria"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".edita_monitoria"
             android:label="@string/title_activity_edita_monitoria"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".excluir_monitoria"
             android:label="@string/title_activity_excluir_monitoria"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ra"
             android:label="@string/title_activity_ra"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ondecomer"
             android:label="@string/title_activity_ondecomer"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".tutorial"
             android:label="@string/title_activity_tutorial"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
