@@ -79,7 +79,7 @@ public class contador extends AppCompatActivity {
     }
 
     public void carregar_lista(){
-        arrayAreas.add(new Gif("Nós sabemos que falar isso assim pra um(a) vestibulando(a) é maldade, então pra compensar nós separamos uma maravilhosa lista com os gifs mais fofos da internet, assim vocês verem e acalmarem o coração <3 (ao tocar no nome do gif, ele será aberto no seu navegador, é necessária conexão com a internet para esta ação)",""));
+        arrayAreas.add(new Gif("Nós sabemos que falar isso assim pra um(a) vestibulando(a) é maldade, então pra compensar nós separamos uma maravilhosa lista com os gifs mais fofos da internet, assim vocês veem e acalmam o coração <3 (ao tocar no nome do gif, ele será aberto no seu navegador, é necessária conexão com a internet para esta ação)",""));
         arrayAreas.add(new Gif("Pug brincalhão","https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr06/2013/5/31/10/anigif_enhanced-buzz-3662-1370010446-11.gif?downsize=715:*&output-format=auto&output-quality=auto"));
         arrayAreas.add(new Gif("O chacoalha!Chacoalha!","https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr06/2013/5/30/18/anigif_enhanced-buzz-10922-1369953122-8.gif?downsize=715:*&output-format=auto&output-quality=auto"));
         arrayAreas.add(new Gif("O coelho atarefado","https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr01/2013/5/30/18/anigif_enhanced-buzz-28498-1369952815-11.gif?downsize=715:*&output-format=auto&output-quality=auto"));
@@ -98,20 +98,12 @@ public class contador extends AppCompatActivity {
         arrayAreas.add(new Gif("Sono tranquilo","https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr03/2013/5/30/17/anigif_enhanced-buzz-1832-1369951156-8.gif?downsize=715:*&output-format=auto&output-quality=auto"));
         arrayAreas.add(new Gif("Cansado","https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr05/2013/5/30/16/anigif_enhanced-buzz-29323-1369944638-21.gif?downsize=715:*&output-format=auto&output-quality=auto"));
         arrayAreas.add(new Gif("DOGleiro","https://img.buzzfeed.com/buzzfeed-static/static/enhanced/webdr02/2013/5/30/18/anigif_enhanced-buzz-3389-1369954359-12.gif?downsize=715:*&output-format=auto&output-quality=auto"));
-        /*arrayAreas.add(new Gif("",""));
-        arrayAreas.add(new Gif("",""));
-        arrayAreas.add(new Gif("",""));
-        arrayAreas.add(new Gif("",""));
-        arrayAreas.add(new Gif("",""));
-        arrayAreas.add(new Gif("",""));
-        arrayAreas.add(new Gif("",""));
-        arrayAreas.add(new Gif("",""));
-        arrayAreas.add(new Gif("",""));
-        arrayAreas.add(new Gif("",""));
-        arrayAreas.add(new Gif("",""));
-        arrayAreas.add(new Gif("",""));
-        arrayAreas.add(new Gif("",""));
-        */
+        arrayAreas.add(new Gif("Hoje não","https://i1.wp.com/biosom.com.br/blog/wp-content/uploads/2015/08/gifs-engraçados-com-animais-de-estimação.gif?resize=350%2C253&ssl=1"));
+        arrayAreas.add(new Gif("DJ","https://i2.wp.com/biosom.com.br/blog/wp-content/uploads/2015/08/animais-de-estimação2.gif?resize=480%2C360"));
+        arrayAreas.add(new Gif("Até mais!","https://i2.wp.com/biosom.com.br/blog/wp-content/uploads/2015/08/animais-de-estimação3.gif?resize=360%2C203"));
+        arrayAreas.add(new Gif("Malhando","https://i2.wp.com/biosom.com.br/blog/wp-content/uploads/2015/08/animais-de-estimação6.gif?resize=366%2C259"));
+        arrayAreas.add(new Gif("Olha aqui como faz","https://i2.wp.com/biosom.com.br/blog/wp-content/uploads/2015/08/animais-de-estimação7.gif?resize=400%2C229"));
+        arrayAreas.add(new Gif("Me deixa ver TV em paz","https://i2.wp.com/biosom.com.br/blog/wp-content/uploads/2015/08/animais-de-estimação-tv.gif?resize=320%2C240"));
 
         adapter=new Gif_adapater(this,arrayAreas);
         lista.setAdapter(adapter);
