@@ -57,7 +57,7 @@ public class Calendario extends AppCompatActivity {
     public void marca_dia(View view){
         String x;
         TextView txt=(TextView) view;
-        cursor = bd.rawQuery("SELECT dia_mes,mes,desc_dia,status,dia,msg FROM dias WHERE desc_dia='"+txt.getText().toString()+"' ORDER BY dia ASC",null);
+        cursor = bd.rawQuery("SELECT dia_mes,mes,desc_dia,status,dia,msg,indice FROM dias WHERE desc_dia='"+txt.getText().toString()+"' ORDER BY dia ASC",null);
         cursor.moveToFirst();
         if(!cursor.getString(3).equals("notificado")) {
             if (cursor.getString(3).equals("notificar")) {
@@ -65,7 +65,7 @@ public class Calendario extends AppCompatActivity {
             } else {
                 x = "notificar";
             }
-            bd.execSQL("INSERT INTO dias VALUES('" + cursor.getString(2) + "','" + cursor.getString(4) + "','" + cursor.getString(0) + "','" + cursor.getString(1) + "','" + x + "','" + cursor.getString(5) + "');");
+            bd.execSQL("INSERT INTO dias VALUES('" + cursor.getString(2) + "','" + cursor.getString(4) + "','" + cursor.getString(0) + "','" + cursor.getString(1) + "','" + x + "','" + cursor.getString(5) + "','" + cursor.getString(6) + "');");
             bd.execSQL("DELETE FROM dias WHERE (desc_dia='" + txt.getText().toString() + "' AND status='" + cursor.getString(3) + "')");
             cursor = bd.rawQuery("SELECT dia_mes,mes,desc_dia,status FROM dias  WHERE dia>='" + dia + "'ORDER BY dia ASC", null);
             arrayAreas.clear();
