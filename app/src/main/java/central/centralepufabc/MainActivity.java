@@ -26,6 +26,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -40,10 +46,11 @@ public class MainActivity extends AppCompatActivity
     Spinner partida, chegada;
     SQLiteDatabase bd;
     Calendar calendar;
-    Cursor cursor,gerencia_aula;
+    Cursor cursor,gerencia_aula,fb;
     int hora_atual,minuto_atual,dia,linha_min,linha_max, foi,x,controle;
     LinearLayout tempoRestanteLayout;
     String nome_tabela,localp,locald,pre_linha,inv,adapter,dia_consulta;
+    DatabaseReference sa_leste_sa,linha2_sa,linha5_se,sa_leste_se,inter_se;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +107,249 @@ public class MainActivity extends AppCompatActivity
         calendar = Calendar.getInstance(TimeZone.getTimeZone("Brazil/East"));//configurar calendário
 
         dia=calendar.get(Calendar.DAY_OF_WEEK);
+
+        //FIREBASE
+        sa_leste_sa= FirebaseDatabase.getInstance().getReference().getRoot().child("Fretados").child("Sábado-SA-Leste");
+        sa_leste_sa.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String msg=dataSnapshot.getValue().toString();
+                String array[] = new String[4];
+                array = msg.split(",");
+                //SA-LESTE/LESTE-SA/LINHA/INDICE
+                fb = bd.rawQuery("SELECT * FROM fretados_sabado_1 WHERE indice=='"+Integer.parseInt(array[3])+"' ORDER BY indice ASC", null);
+                if(fb.getCount()==0) {
+                    bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('" + Integer.parseInt(array[0]) + "','" + Integer.parseInt(array[1]) + "','" + Integer.parseInt(array[2]) + "','" + Integer.parseInt(array[3]) + "');");
+                }
+
+
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                String msg=dataSnapshot.getValue().toString();
+                String array[] = new String[4];
+                array = msg.split(",");
+                //SA-LESTE/LESTE-SA/LINHA/INDICE
+
+                fb = bd.rawQuery("SELECT * FROM fretados_sabado_1 WHERE indice=='"+Integer.parseInt(array[3])+"' ORDER BY indice ASC", null);
+                if(fb.getCount()!=0) {
+                    bd.execSQL("DELETE FROM fretados_sabado_1 WHERE indice='" +Integer.parseInt(array[3]) + "'");
+                    bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('" + Integer.parseInt(array[0]) + "','" + Integer.parseInt(array[1]) + "','" + Integer.parseInt(array[2]) + "','" + Integer.parseInt(array[3]) + "');");
+                }
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                String msg=dataSnapshot.getValue().toString();
+                String array[] = new String[4];
+                array = msg.split(",");
+                //SA-LESTE/LESTE-SA/LINHA/INDICE
+                fb = bd.rawQuery("SELECT * FROM fretados_sabado_1 WHERE indice=='"+Integer.parseInt(array[3])+"' ORDER BY indice ASC", null);
+                if(fb.getCount()!=0) {
+                    bd.execSQL("DELETE FROM fretados_sabado_1 WHERE indice='" +Integer.parseInt(array[3]) + "'");
+                }
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        linha2_sa=FirebaseDatabase.getInstance().getReference().getRoot().child("Fretados").child("Sábado-Linha2");
+        linha2_sa.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String msg=dataSnapshot.getValue().toString();
+                String array[] = new String[6];
+                array = msg.split(",");
+                fb = bd.rawQuery("SELECT * FROM fretados_sabado_2 WHERE indice=='"+Integer.parseInt(array[5])+"' ORDER BY indice ASC", null);
+                if(fb.getCount()==0) {
+                    bd.execSQL("INSERT INTO fretados_sabado_2 VALUES('" + Integer.parseInt(array[0]) + "','" + Integer.parseInt(array[1]) + "','" + Integer.parseInt(array[2]) + "','" + Integer.parseInt(array[3]) + "','"+Integer.parseInt(array[4])+"','"+Integer.parseInt(array[5])+"');");
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                String msg=dataSnapshot.getValue().toString();
+                String array[] = new String[6];
+                array = msg.split(",");
+                fb = bd.rawQuery("SELECT * FROM fretados_sabado_2 WHERE indice=='"+Integer.parseInt(array[5])+"' ORDER BY indice ASC", null);
+                if(fb.getCount()!=0) {
+                    bd.execSQL("DELETE FROM fretados_sabado_2 WHERE indice='" +Integer.parseInt(array[5]) + "'");
+                    bd.execSQL("INSERT INTO fretados_sabado_2 VALUES('" + Integer.parseInt(array[0]) + "','" + Integer.parseInt(array[1]) + "','" + Integer.parseInt(array[2]) + "','" + Integer.parseInt(array[3]) + "','"+Integer.parseInt(array[4])+"','"+Integer.parseInt(array[5])+"');");
+                }
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                String msg=dataSnapshot.getValue().toString();
+                String array[] = new String[6];
+                array = msg.split(",");
+                fb = bd.rawQuery("SELECT * FROM fretados_sabado_2 WHERE indice=='"+Integer.parseInt(array[5])+"' ORDER BY indice ASC", null);
+                if(fb.getCount()!=0) {
+                    bd.execSQL("DELETE FROM fretados_sabado_2 WHERE indice='" +Integer.parseInt(array[5]) + "'");
+                }
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        linha5_se=FirebaseDatabase.getInstance().getReference().getRoot().child("Fretados").child("Semanal-linha5");
+        linha5_se.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String msg=dataSnapshot.getValue().toString();
+                String array[] = new String[6];
+                array = msg.split(",");
+                fb = bd.rawQuery("SELECT * FROM fretados_semanal_5 WHERE indice=='"+Integer.parseInt(array[5])+"' ORDER BY indice ASC", null);
+                if(fb.getCount()==0) {
+                    bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('" + Integer.parseInt(array[0]) + "','" + Integer.parseInt(array[1]) + "','" + Integer.parseInt(array[2]) + "','" + Integer.parseInt(array[3]) + "','"+Integer.parseInt(array[4])+"','"+Integer.parseInt(array[5])+"');");
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                String msg=dataSnapshot.getValue().toString();
+                String array[] = new String[6];
+                array = msg.split(",");
+                fb = bd.rawQuery("SELECT * FROM fretados_semanal_5 WHERE indice=='"+Integer.parseInt(array[5])+"' ORDER BY indice ASC", null);
+                if(fb.getCount()!=0) {
+                    bd.execSQL("DELETE FROM fretados_semanal_5 WHERE indice='" +Integer.parseInt(array[5]) + "'");
+                    bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('" + Integer.parseInt(array[0]) + "','" + Integer.parseInt(array[1]) + "','" + Integer.parseInt(array[2]) + "','" + Integer.parseInt(array[3]) + "','"+Integer.parseInt(array[4])+"','"+Integer.parseInt(array[5])+"');");
+                }
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                String msg=dataSnapshot.getValue().toString();
+                String array[] = new String[6];
+                array = msg.split(",");
+                fb = bd.rawQuery("SELECT * FROM fretados_semanal_5 WHERE indice=='"+Integer.parseInt(array[5])+"' ORDER BY indice ASC", null);
+                if(fb.getCount()!=0) {
+                    bd.execSQL("DELETE FROM fretados_semanal_5 WHERE indice='" +Integer.parseInt(array[5]) + "'");
+                }
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        sa_leste_se=FirebaseDatabase.getInstance().getReference().getRoot().child("Fretados").child("Semanal-leste-sa");
+        sa_leste_se.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String msg=dataSnapshot.getValue().toString();
+                String array[] = new String[4];
+                array = msg.split(",");
+                fb = bd.rawQuery("SELECT * FROM fretados_semanal_1 WHERE indice=='"+Integer.parseInt(array[3])+"' ORDER BY indice ASC", null);
+                if(fb.getCount()==0) {
+                    bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('" + Integer.parseInt(array[0]) + "','" + Integer.parseInt(array[1]) + "','" + Integer.parseInt(array[2]) + "','" + Integer.parseInt(array[3])+"');");
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                String msg=dataSnapshot.getValue().toString();
+                String array[] = new String[4];
+                array = msg.split(",");
+                fb = bd.rawQuery("SELECT * FROM fretados_semanal_1 WHERE indice=='"+Integer.parseInt(array[3])+"' ORDER BY indice ASC", null);
+                if(fb.getCount()!=0) {
+                    bd.execSQL("DELETE FROM fretados_semanal_1 WHERE indice='" +Integer.parseInt(array[3]) + "'");
+                    bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('" + Integer.parseInt(array[0]) + "','" + Integer.parseInt(array[1]) + "','" + Integer.parseInt(array[2]) + "','" + Integer.parseInt(array[3])+"');");
+                }
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                String msg=dataSnapshot.getValue().toString();
+                String array[] = new String[4];
+                array = msg.split(",");
+                fb = bd.rawQuery("SELECT * FROM fretados_semanal_1 WHERE indice=='"+Integer.parseInt(array[3])+"' ORDER BY indice ASC", null);
+                if(fb.getCount()!=0) {
+                    bd.execSQL("DELETE FROM fretados_semanal_1 WHERE indice='" +Integer.parseInt(array[3]) + "'");
+                }
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        inter_se=FirebaseDatabase.getInstance().getReference().getRoot().child("Fretados").child("Semanal-2-3-4");
+        inter_se.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                String msg=dataSnapshot.getValue().toString();
+                String array[] = new String[5];
+                array = msg.split(",");
+                fb = bd.rawQuery("SELECT * FROM fretados_semanal_2_3_4_exp WHERE indice=='"+Integer.parseInt(array[4])+"' ORDER BY indice ASC", null);
+                if(fb.getCount()==0) {
+                    bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('" + Integer.parseInt(array[0]) + "','" + Integer.parseInt(array[1]) + "','" + Integer.parseInt(array[2]) + "','" + Integer.parseInt(array[3])+"','" + Integer.parseInt(array[4])+"');");
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                String msg=dataSnapshot.getValue().toString();
+                String array[] = new String[5];
+                array = msg.split(",");
+                fb = bd.rawQuery("SELECT * FROM fretados_semanal_2_3_4_exp WHERE indice=='"+Integer.parseInt(array[4])+"' ORDER BY indice ASC", null);
+                if(fb.getCount()!=0) {
+                    bd.execSQL("DELETE FROM fretados_semanal_2_3_4_exp WHERE indice='" +Integer.parseInt(array[4]) + "'");
+                    bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('" + Integer.parseInt(array[0]) + "','" + Integer.parseInt(array[1]) + "','" + Integer.parseInt(array[2]) + "','" + Integer.parseInt(array[3])+"','" + Integer.parseInt(array[4])+"');");
+                }
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                String msg=dataSnapshot.getValue().toString();
+                String array[] = new String[5];
+                array = msg.split(",");
+                fb = bd.rawQuery("SELECT * FROM fretados_semanal_2_3_4_exp WHERE indice=='"+Integer.parseInt(array[4])+"' ORDER BY indice ASC", null);
+                if(fb.getCount()!=0) {
+                    bd.execSQL("DELETE FROM fretados_semanal_2_3_4_exp WHERE indice='" +Integer.parseInt(array[4]) + "'");
+                }
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         rar();
         preencher_aulinhas();
 
@@ -410,8 +660,10 @@ public class MainActivity extends AppCompatActivity
 
     public void criarbancodedados() {
         bd = openOrCreateDatabase("CentralEPUFABCDB", Context.MODE_PRIVATE, null);
-        bd.execSQL("CREATE TABLE IF NOT EXISTS fretados_semanal_1 (sa_leste INTEGER, leste_sa INTEGER, linha INTEGER);");
-        cursor = bd.query("fretados_semanal_1", null, null, null, null, null, "sa_leste ASC");
+        bd.execSQL("CREATE TABLE IF NOT EXISTS controle (versao INTEGER);");
+
+
+        cursor = bd.query("controle", null, null, null, null, null, null);
         //esse if serve pra ver se a tabela já foi preenchida, ou seja, só vai inserir os dados quando instala o app
         //por isso quando instala e abre pela primeira vez ele demora pra abrir, tá inserindo todos esses dados
         //não consegui pensar em um jeito de melhorar isso, já que a gente precisa inserir os dados na tabela (servidor local)
@@ -420,203 +672,210 @@ public class MainActivity extends AppCompatActivity
 
             Intent intent = new Intent(this, tutorial.class);
             startActivity(intent);
+            bd.execSQL("DROP TABLE IF EXISTS fretados_semanal_1;");
 
+            bd.execSQL("DROP TABLE IF EXISTS fretados_semanal_2_3_4_exp;");
+
+            bd.execSQL("DROP TABLE IF EXISTS fretados_semanal_5;");
+
+            bd.execSQL("DROP TABLE IF EXISTS fretados_sabado_1;");
+
+            bd.execSQL("DROP TABLE IF EXISTS fretados_sabado_2;");
             //LINHAS 1, 2 E EXPRESSO QUE VÃO DE SA PRA LESTE
             //LINHA 1
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('0','0','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('0','0','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('10000','420','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('430','436','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('446','452','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('462','468','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('478','484','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('494','500','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('510','516','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('526','532','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('542','548','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('558','564','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('610','616','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('662','668','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('714','720','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('730','736','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('746','752','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('762','768','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('780','786','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('810','816','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('862','868','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('914','920','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('976','982','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1028','1034','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1058','1064','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1074','1080','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1090','1096','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1106','1112','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1122','1128','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1138','1144','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1154','1160','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1206','1212','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1268','1274','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1314','1320','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1330','1336','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1346','1352','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1362','1368','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1378','1384','1');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1394','1400','1');");
+            bd.execSQL("CREATE TABLE IF NOT EXISTS fretados_semanal_1 (sa_leste INTEGER, leste_sa INTEGER, linha INTEGER,indice INTEGER);");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('0','0','1','0');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('0','0','3','1');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('10000','420','1','2');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('450','455','1','3');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('480','485','1','4');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('510','515','1','5');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('540','545','1','6');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('570','575','1','7');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('600','605','1','8');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('630','635','1','9');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('660','665','1','10');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('690','695','1','11');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('720','725','1','12');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('750','755','1','13');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('780','785','1','14');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('810','815','1','15');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('840','845','1','16');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('870','875','1','17');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('900','905','1','18');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('930','935','1','19');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('960','965','1','20');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('990','995','1','21');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1020','1025','1','22');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1050','1055','1','23');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1080','1085','1','24');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1110','1115','1','25');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1140','1145','1','26');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1170','1175','1','27');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1200','1205','1','28');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1230','1235','1','29');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1260','1265','1','30');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1290','1295','1','31');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1320','1325','1','32');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1350','1355','1','33');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1380','1385','1','34');");
             //LINHAS INTERUNIDADES (2, 3 E 4)
 
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('405','460','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('430','485','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('445','515','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('481','541','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('508','568','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('535','590','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('565','620','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('595','650','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('625','680','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('651','706','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('678','733','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('705','760','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('731','786','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('758','813','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('785','840','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('811','866','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('838','893','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('865','920','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('891','946','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('918','973','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('945','995','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('970','1020','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('995','1045','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1020','1085','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1045','1110','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1070','1135','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1100','1165','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1135','1200','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1160','1225','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1200','1255','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1225','1280','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1250','1305','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1290','1340','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1315','1365','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1340','1390','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1365','1415','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1385','10000','3');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('405','10000','3','35');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('430','10000','4','36');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('445','10000','2','37');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('481','10000','3','38');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('508','10000','4','39');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('535','10000','2','40');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('565','10000','3','41');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('595','10000','4','42');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('625','10000','2','43');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('651','10000','3','44');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('678','10000','4','45');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('705','10000','2','46');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('731','10000','3','47');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('758','10000','4','48');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('785','10000','2','49');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('811','10000','3','50');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('838','10000','4','51');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('865','10000','2','52');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('891','10000','3','53');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('918','10000','4','54');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('945','10000','2','55');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('970','10000','3','56');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('995','10000','4','57');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1020','10000','2','58');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1045','10000','3','59');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1070','10000','4','60');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1100','10000','2','61');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1135','10000','3','62');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1160','10000','4','63');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1200','10000','2','64');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1225','1280','3','65');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1250','1305','4','66');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1290','1340','2','67');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1315','1365','3','68');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1340','1390','4','69');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1365','1415','2','70');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1385','10000','3','71');");
             //EXPRESSO
             //6 VAI DE SA PRA SBC
             //7 DO LESTE PRA SA
 
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('685','10000','6');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('900','10000','6');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1030','10000','6');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1235','10000','6');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('10000','586','7');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('10000','862','7');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('10000','1006','7');");
-            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('10000','1147','7');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('685','10000','6','72');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('900','10000','6','73');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1030','10000','6','74');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('1235','10000','6','75');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('10000','586','7','76');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('10000','862','7','77');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('10000','1006','7','78');");
+            bd.execSQL("INSERT INTO fretados_semanal_1 VALUES('10000','1147','7','79');");
 
             //LESTE PARA SBC E VICE-VERSA (INTERUNIDADES)
-            bd.execSQL("CREATE TABLE IF NOT EXISTS fretados_semanal_2_3_4_exp (leste_sbc INTEGER, sbc_leste INTEGER, linha INTEGER);");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('0','0','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('410','439','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('435','464','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('450','492','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('486','518','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('513','545','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('540','569','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('570','599','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('600','629','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('630','659','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('656','685','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('683','712','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('710','739','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('736','765','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('763','792','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('790','819','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('816','845','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('843','872','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('870','899','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('896','925','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('923','952','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('950','977','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('975','1002','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1000','1027','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1025','1059','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1050','1084','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1075','1109','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1105','1149','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1140','1174','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1165','1199','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1205','1234','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1230','1259','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1255','1284','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1295','1323','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1320','1347','3');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1345','1372','4');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1370','1397','2');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1390','10000','3');");
+            bd.execSQL("CREATE TABLE IF NOT EXISTS fretados_semanal_2_3_4_exp (leste_sbc INTEGER, sbc_sa INTEGER, linha INTEGER,sbc_leste INTEGER,indice INTEGER);");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('0','0','3','0','0');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('410','439','3','10000','1');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('435','464','4','10000','2');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('450','492','2','10000','3');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('486','518','3','10000','4');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('513','545','4','10000','5');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('540','569','2','10000','6');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('570','599','3','10000','7');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('600','629','4','10000','8');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('630','659','2','10000','9');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('656','685','3','10000','10');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('683','712','4','10000','11');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('710','739','2','10000','12');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('736','765','3','10000','13');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('763','792','4','10000','14');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('790','819','2','10000','15');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('816','845','3','10000','16');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('843','872','4','10000','17');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('870','899','2','10000','18');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('896','925','3','10000','19');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('923','952','4','10000','20');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('950','977','2','10000','21');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('975','1002','3','10000','22');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1000','1027','4','10000','23');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1025','1059','2','10000','24');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1050','1084','3','10000','25');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1075','1109','4','10000','26');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1105','1149','2','10000','27');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1140','1174','3','10000','28');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1165','1199','4','10000','29');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1205','1234','2','10000','30');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1230','1259','3','1259','31');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1255','1284','4','1284','32');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1295','1323','2','1323','33');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1320','1347','3','1347','34');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1345','1372','4','1372','35');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1370','1397','2','1397','36');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1390','10000','3','10000','37');");
 
             //EXPRESSO DA MASSA
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('440','465','7');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('486','515','7');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('536','565','6');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('690','725','7');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('746','771','7');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('802','831','6');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('905','934','7');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('955','985','6');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1035','1065','7');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1091','1121','6');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1240','1266','7');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1287','1330','7');");
-            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1351','1385','7');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('440','10000','7','465','38');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('486','10000','7','515','39');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('536','565','6','565','40');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('690','10000','7','725','41');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('746','10000','7','771','42');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('802','831','6','831','43');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('905','10000','7','934','44');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('955','985','6','985','45');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1035','10000','7','1065','46');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1091','1121','6','1121','47');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1240','10000','7','1266','48');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1287','10000','7','1330','49');");
+            bd.execSQL("INSERT INTO fretados_semanal_2_3_4_exp VALUES('1351','10000','7','1385','50');");
 
             //LINHA 5, SÓ SBC
-            bd.execSQL("CREATE TABLE IF NOT EXISTS fretados_semanal_5 (sbc_pca INTEGER, pca_terminal INTEGER, terminal_pca INTEGER, pca_sbc INTEGER, linha INTEGER);");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('0','0','0','0','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('0','0','395','405','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('415','420','430','440','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('450','455','465','475','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('537','542','552','557','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('604','609','619','624','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('671','676','686','691','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('725','730','740','745','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('790','795','805','810','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('857','862','872','877','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('927','932','942','947','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('991','996','1006','1016','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1029','1034','1044','1059','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1069','1074','1084','1097','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1103','1108','1118','1133','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1165','1170','1180','1193','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1220','1225','1235','1245','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1284','1289','1299','1304','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1330','1335','1345','1350','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1363','1368','1378','1383','5');");
-            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1395','1400','1410','1415','5');");
+            bd.execSQL("CREATE TABLE IF NOT EXISTS fretados_semanal_5 (sbc_pca INTEGER, pca_terminal INTEGER, terminal_pca INTEGER, pca_sbc INTEGER, linha INTEGER,indice INTEGER);");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('0','0','0','0','5','0');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('0','0','395','405','5','1');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('415','420','430','440','5','2');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('450','455','465','475','5','3');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('537','542','552','557','5','4');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('604','609','619','624','5','5');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('671','676','686','691','5','6');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('725','730','740','745','5','7');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('790','795','805','810','5','8');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('857','862','872','877','5','9');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('927','932','942','947','5','10');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('991','996','1006','1016','5','11');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1029','1034','1044','1059','5','12');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1069','1074','1084','1097','5','13');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1103','1108','1118','1133','5','14');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1165','1170','1180','1193','5','15');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1220','1225','1235','1245','5','16');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1284','1289','1299','1304','5','17');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1330','1335','1345','1350','5','18');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1363','1368','1378','1383','5','19');");
+            bd.execSQL("INSERT INTO fretados_semanal_5 VALUES('1395','1400','1410','1415','5','20');");
 
 
             //SABADO. PRA Q IR SABADO PRA PORRA DA FACULDADE?! FICA A INDAGAÇÃO
             //DIA,SA_LESTE,LESTE_SA,LESTE_SBC,SBC_LESTE,SBC_PCA,PCA_TERMINAL,TERMINAL_PCA,PCA_SBC
-            bd.execSQL("CREATE TABLE IF NOT EXISTS fretados_sabado_1 (sa_leste INTEGER, leste_sa, linha INTEGER);");
-            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('0','0','1');");
-            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('465','469','1');");
-            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('585','589','1');");
-            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('615','619','1');");
-            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('720','724','1');");
-            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('825','829','1');");
-            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('960','964','1');");
-            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('420','505','2');");
-            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('530','640','2');");
-            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('650','770','2');");
-            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('785','900','2');");
+            bd.execSQL("CREATE TABLE IF NOT EXISTS fretados_sabado_1 (sa_leste INTEGER, leste_sa, linha INTEGER, indice INTEGER);");
+            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('0','0','1','0');");
+            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('465','470','1','1');");
+            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('585','590','1','2');");
+            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('615','620','1','3');");
+            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('730','735','1','4');");
+            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('825','830','1','5');");
+            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('970','975','1','6');");
+            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('420','505','2','7');");
+            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('530','640','2','8');");
+            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('650','770','2','9');");
+            bd.execSQL("INSERT INTO fretados_sabado_1 VALUES('785','900','2','10');");
 
             //SABADO. INTERUNIDADES. FODEU A TABELA TODA ESSES DESTINOS DIFERENTES!!!!!!!!a
-            bd.execSQL("CREATE TABLE IF NOT EXISTS fretados_sabado_2 (leste_term INTEGER, term_sbc INTEGER, sbc_term INTEGER, term_leste INTEGER, linha INTEGER);");
-            bd.execSQL("INSERT INTO fretados_sabado_2 VALUES('0','0','0','0','2');");
-            bd.execSQL("INSERT INTO fretados_sabado_2 VALUES('425','445','470','485','2');");
-            bd.execSQL("INSERT INTO fretados_sabado_2 VALUES('535','560','595','615','2');");
-            bd.execSQL("INSERT INTO fretados_sabado_2 VALUES('655','680','725','745','2');");
-            bd.execSQL("INSERT INTO fretados_sabado_2 VALUES('790','815','855','875','2');");
+            bd.execSQL("CREATE TABLE IF NOT EXISTS fretados_sabado_2 (leste_term INTEGER, term_sbc INTEGER, sbc_term INTEGER, term_leste INTEGER, linha INTEGER, indice INTEGER);");
+            bd.execSQL("INSERT INTO fretados_sabado_2 VALUES('0','0','0','0','2','0');");
+            bd.execSQL("INSERT INTO fretados_sabado_2 VALUES('425','445','470','485','2','1');");
+            bd.execSQL("INSERT INTO fretados_sabado_2 VALUES('535','560','595','615','2','2');");
+            bd.execSQL("INSERT INTO fretados_sabado_2 VALUES('655','680','725','745','2','3');");
+            bd.execSQL("INSERT INTO fretados_sabado_2 VALUES('790','815','855','875','2','4');");
+
+            bd.execSQL("INSERT INTO controle VALUES('0');");
 
             bd.execSQL("CREATE TABLE IF NOT EXISTS local_salvo (local text not null, indice INTEGER);");
             bd.execSQL("INSERT INTO local_salvo VALUES('Terminal leste','1');");
@@ -877,6 +1136,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void atualizarhorafretado(String estou, String vou){
+        fb = bd.query("fretados_semanal_2_3_4_exp", null, null, null, null, null, null);
+        int a=fb.getCount();
+        Toast.makeText(this,String.valueOf(a),Toast.LENGTH_SHORT).show();
         calendar = Calendar.getInstance(TimeZone.getTimeZone("Brazil/East"));
         dia = calendar.get(Calendar.DAY_OF_WEEK);
         hora_atual = calendar.get(Calendar.HOUR_OF_DAY);
@@ -1003,7 +1265,7 @@ public class MainActivity extends AppCompatActivity
                                 linha_max = 10;
                             } else{
                                 if(vou.equals("Santo André")){
-                                    estou = "sbc_leste";
+                                    estou = "sbc_sa";
                                     nome_tabela = "fretados_semanal_2_3_4_exp";
                                     linha_min = 0;
                                     linha_max = 7;

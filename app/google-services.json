@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "895789357993",
+    "firebase_url": "https://central-epufabc.firebaseio.com",
+    "project_id": "central-epufabc",
+    "storage_bucket": "central-epufabc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:895789357993:android:0dc345be17b4cc1a",
+        "android_client_info": {
+          "package_name": "central.centralepufabc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "895789357993-k25cifmq0oilq8v4dvijcdmiqb9vtkai.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "central.centralepufabc",
+            "certificate_hash": "fae97ba0840c985391c66941be4674e7614bfcbf"
+          }
+        },
+        {
+          "client_id": "895789357993-b4b9i75dmb13k41dvfi88ue3pambtkes.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFBfe9OBOPSz-SjYA2yikKXx7auL1Lnyg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "895789357993-b4b9i75dmb13k41dvfi88ue3pambtkes.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

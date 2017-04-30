@@ -87,7 +87,6 @@ public class lista_frentes extends AppCompatActivity {
         quatro.add("Geometria II");
         quatro.add("Aula de exercícios");
         listHash.put(listDataHeader.get(3),quatro);
-        cinco.add("Grámatica");
         cinco.add("Redação");
         listHash.put(listDataHeader.get(4),cinco);
 
