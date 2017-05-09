@@ -1178,9 +1178,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void atualizarhorafretado(String estou, String vou){
-        fb = bd.query("dias", null, null, null, null, null, null);
+        /*fb = bd.query("dias", null, null, null, null, null, null);
         int a=fb.getCount();
-        Toast.makeText(this,String.valueOf(a),Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,String.valueOf(a),Toast.LENGTH_SHORT).show();*/
         calendar = Calendar.getInstance(TimeZone.getTimeZone("Brazil/East"));
         dia = calendar.get(Calendar.DAY_OF_WEEK);
         hora_atual = calendar.get(Calendar.HOUR_OF_DAY);

@@ -115,7 +115,7 @@
                 android:text="Avaliar"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="16sp"
-                android:tag="https://play.google.com/store/apps/details?id=com.centralufabc.centralepufabc"/>
+                android:tag="https://play.google.com/store/apps/details?id=central.centralepufabc"/>
 
         </LinearLayout>
 

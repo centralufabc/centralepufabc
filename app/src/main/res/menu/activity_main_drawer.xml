@@ -14,7 +14,7 @@
         <item
             android:id="@+id/nav_cronograma"
             android:icon="@drawable/cronograma"
-            android:title="Áreas de estudo" />
+            android:title="Plataforma edmodo" />
 
         <item
             android:id="@+id/nav_monitoria"

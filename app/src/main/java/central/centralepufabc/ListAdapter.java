@@ -83,8 +83,12 @@ public class ListAdapter extends BaseExpandableListAdapter {
             LayoutInflater inflater=(LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view=inflater.inflate(R.layout.layout_item_lista,null);
         }
+        String array[] = new String[2];
+        array = childText.split("-");
         TextView txtListChild=(TextView) view.findViewById(R.id.design_item_lista);
-        txtListChild.setText(childText);
+        txtListChild.setText(array[0]);
+        txtListChild=(TextView) view.findViewById(R.id.textView7);
+        txtListChild.setText("Código do Edmodo: "+array[1]);
         return view;
     }
 

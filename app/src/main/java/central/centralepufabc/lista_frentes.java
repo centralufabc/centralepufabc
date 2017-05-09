@@ -49,7 +49,7 @@ public class lista_frentes extends AppCompatActivity {
     private void initData() {
         listDataHeader=new ArrayList<>();
         listHash=new HashMap<>();
-
+        listDataHeader.add("Atendimento geral");
         listDataHeader.add("Ciências da natureza");
         listDataHeader.add("Ciências humanas");
         listDataHeader.add("Linguagens");
@@ -57,38 +57,76 @@ public class lista_frentes extends AppCompatActivity {
         listDataHeader.add("Redação");
 
 
-
+        List<String> zero=new ArrayList<>();
         List<String> um=new ArrayList<>();
         List<String> dois=new ArrayList<>();
         List<String> tres=new ArrayList<>();
         List<String> quatro=new ArrayList<>();
         List<String> cinco=new ArrayList<>();
 
+        zero.add("Atendimento geral-3wizpa");
+        listHash.put(listDataHeader.get(0),zero);
 
-        um.add("Física - Mecânica");
-        um.add("Física - Termologia");
-        um.add("Física - Eletromagnetismo");
-        listHash.put(listDataHeader.get(0),um);
+        um.add("Biologia, Santo André, Vespertino-d3ic8i");
+        um.add("Biologia, Santo André, Noturno-bjfcuw");
+        um.add("Biologia, São Bernardo, Vespertino-y5rxwd");
 
-        dois.add("História - História do Brasil");
-        dois.add("História - História geral");
-        dois.add("Geografia - Geofísica");
-        dois.add("Geografia - Geopolítica");
-        dois.add("Sociologia");
-        dois.add("Filosofia");
-        listHash.put(listDataHeader.get(1),dois);
-        tres.add("História da arte");
-        tres.add("Inglês");
-        tres.add("Literatura");
-        listHash.put(listDataHeader.get(2),tres);
-        quatro.add("Álgebra I");
-        quatro.add("Álgebra II");
-        quatro.add("Geometria I");
-        quatro.add("Geometria II");
-        quatro.add("Aula de exercícios");
-        listHash.put(listDataHeader.get(3),quatro);
-        cinco.add("Redação");
-        listHash.put(listDataHeader.get(4),cinco);
+        um.add("Física, Santo André, Vespertino-dpikks");
+        um.add("Física, Santo André, Noturno-w8mpgf");
+        um.add("Física, São Bernardo, Vespertino-2ayk5i");
+
+        um.add("Química, Santo André, Vespertino-psm6nw");
+        um.add("Química, Santo André, Noturno-48qixq");
+        um.add("Química, São Bernardo, Vespertino-tzq2df");
+
+
+        listHash.put(listDataHeader.get(1),um);
+
+        dois.add("Filosofia, Santo André, Vespertino-yhfyh3");
+        dois.add("Filosofia, Santo André, Noturno-a58kcx");
+        dois.add("Filosofia, São Bernardo, Vespertino-jwxk3p");
+
+        dois.add("Geografia, Santo André, Vespertino-ga27uj");
+        dois.add("Geografia, Santo André, Noturno-c9iqhb");
+        dois.add("Geografia, São Bernardo, Vespertino-2im6zr");
+
+        dois.add("História, Santo André, Vespertino-rvx2ns");
+        dois.add("História, Santo André, Noturno-evfhux");
+        dois.add("História, São Bernardo, Vespertino-895xye");
+
+        dois.add("História da Arte, Santo André, Vespertino-pn2ynq");
+        dois.add("História da Arte, Santo André, Noturno-nu9r4g");
+        dois.add("História da Arte, São Bernardo, Vespertino-eqeqkg");
+
+
+        dois.add("Sociologia, Santo André, Vespertino-7ijg9s");
+        dois.add("Sociologia, Santo André, Noturno-t3fws6");
+        dois.add("Sociologia, São Bernardo, Vespertino-5sifuj");
+
+
+
+
+
+        listHash.put(listDataHeader.get(2),dois);
+
+        tres.add("Gramática, Santo André, Vespertino-bns6bh");
+        tres.add("Gramática, Santo André, Noturno-6gte4b");
+        tres.add("Gramática, São Bernardo, Vespertino-bnv2iz");
+        tres.add("Inglês, Santo André, Vespertino-3jw33z");
+        tres.add("Inglês, Santo André, Noturno-8fwrsb");
+        tres.add("Inglês, São Bernardo, Vespertino-a4t76d");
+        tres.add("Literatura, Santo André, Vespertino-hxz6bt");
+        tres.add("Literatura, Santo André, Noturno-73ju3q");
+        tres.add("Literatura, São Bernardo, Vespertino-3xb9x7");
+        listHash.put(listDataHeader.get(3),tres);
+        quatro.add("Matemática, Santo André, Vespertino-5tzrhr");
+        quatro.add("Matemática, Santo André, Noturno-2ra7gx");
+        quatro.add("Matemática, São Bernardo, Vespertino-7mif8i");
+        listHash.put(listDataHeader.get(4),quatro);
+        cinco.add("Redação, Santo Andre, Vespertino-8zr8wb");
+        cinco.add("Redação, Santo Andre, Noturno-7xqczt");
+        cinco.add("Redação, São Bernardo, Vespertino-5px7fv");
+        listHash.put(listDataHeader.get(5),cinco);
 
 
     }

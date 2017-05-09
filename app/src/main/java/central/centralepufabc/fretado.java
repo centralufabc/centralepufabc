@@ -63,19 +63,19 @@ public class fretado extends AppCompatActivity implements View.OnClickListener {
         switch (view.getId()){
 
             case R.id.linha5:
-                intent.setData(Uri.parse("http://pu.ufabc.edu.br/images/transportes/linhas%2001%20e%2005-publicado.pdf"));
+                intent.setData(Uri.parse("http://pu.ufabc.edu.br/images/transportes/horrios-linhas%2001%20e%2005-publicado.pdf"));
                 break;
             case R.id.linha1:
-                intent.setData(Uri.parse("http://pu.ufabc.edu.br/images/transportes/linhas%2001%20e%2005-publicado.pdf"));
+                intent.setData(Uri.parse("http://pu.ufabc.edu.br/images/transportes/horrios-linhas%2001%20e%2005-publicado.pdf"));
                 break;
             case R.id.interunidades:
-                intent.setData(Uri.parse("http://pu.ufabc.edu.br/images/transportes/linhas%2002-03-04-publicado.pdf"));
+                intent.setData(Uri.parse("http://pu.ufabc.edu.br/images/transportes/horrios-linhas%2002-03-04-publicado.pdf"));
                 break;
             case R.id.expresso:
-                intent.setData(Uri.parse("http://pu.ufabc.edu.br/images/transportes/linha%20expresso-publicado.pdf"));
+                intent.setData(Uri.parse("http://pu.ufabc.edu.br/images/transportes/horrios-expresso-publicado.pdf"));
                 break;
             case R.id.linha_1e2:
-                intent.setData(Uri.parse("http://pu.ufabc.edu.br/images/transportes/linhas%2001%20e%2002%20-%20sbado-publicado.pdf"));
+                intent.setData(Uri.parse("http://pu.ufabc.edu.br/images/transportes/horrios-linhas%2001%20e%2002-sbado-publicado.pdf"));
                 break;
             case R.id.metro:
                 intent.setData(Uri.parse("http://www.metro.sp.gov.br/redes/mapa.pdf"));
